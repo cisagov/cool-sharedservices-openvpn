@@ -5,7 +5,10 @@
 This is a Terraform deployment that creates an OpenVPN server in the
 COOL shared services environment.  This deployment should be laid down
 on top of
-[cisagov/cool-shared-services-networking](https://github.com/cisagov/cool-shared-services-networking), after [cisagov/cool-shared-services-freeipa](https://github.com/cisagov/cool-shared-services-freeipa) has been applied
+[cisagov/cool-shared-services-networking](https://github.com/cisagov/cool-shared-services-networking),
+after
+[cisagov/cool-shared-services-freeipa](https://github.com/cisagov/cool-shared-services-freeipa)
+has been applied
 
 ## Usage ##
 
