@@ -1,17 +1,17 @@
-# cool-shared-services-freeipa #
+# cool-shared-services-openvpn #
 
-[![GitHub Build Status](https://github.com/cisagov/cool-shared-services-freeipa/workflows/build/badge.svg)](https://github.com/cisagov/cool-shared-services-freeipa/actions)
+[![GitHub Build Status](https://github.com/cisagov/cool-shared-services-openvpn/workflows/build/badge.svg)](https://github.com/cisagov/cool-shared-services-openvpn/actions)
 
-This is a Terraform deployment that creates a FreeIPA master and
-multiple FreeIPA replicas in the COOL shared services environment.
-This deployment should be laid down on top of
-[cisagov/cool-shared-services-networking](https://github.com/cisagov/cool-shared-services-networking).
+This is a Terraform deployment that creates an OpenVPN server in the
+COOL shared services environment.  This deployment should be laid down
+on top of
+[cisagov/cool-shared-services-networking](https://github.com/cisagov/cool-shared-services-networking), after [cisagov/cool-shared-services-freeipa](https://github.com/cisagov/cool-shared-services-freeipa) has been applied
 
 ## Usage ##
 
 ```hcl
 module "example" {
-  source = "github.com/cisagov/cool-shared-services-freeipa"
+  source = "github.com/cisagov/cool-shared-services-openvpn"
 
   admin_pw                         = "thepassword"
   aws_region                       = "us-east-1"
