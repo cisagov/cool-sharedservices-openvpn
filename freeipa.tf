@@ -9,12 +9,12 @@ module "ipa_master" {
     aws.public_dns = aws.public_dns
   }
 
-  admin_pw                    = var.ipa_admin_pw
+  admin_pw                    = var.admin_pw
   associate_public_ip_address = true
   cert_bucket_name            = var.cert_bucket_name
-  cert_pw                     = var.ipa_master_cert_pw
+  cert_pw                     = var.master_cert_pw
   cert_read_role_arn          = module.certreadrole_ipa_master.arn
-  directory_service_pw        = var.ipa_directory_service_pw
+  directory_service_pw        = var.directory_service_pw
   domain                      = var.cool_domain
   hostname                    = "ipa.${var.cool_domain}"
   private_reverse_zone_id     = var.master_private_reverse_zone_id
@@ -34,10 +34,10 @@ module "ipa_replica1" {
     aws.public_dns = aws.public_dns
   }
 
-  admin_pw                    = var.ipa_admin_pw
+  admin_pw                    = var.admin_pw
   associate_public_ip_address = true
   cert_bucket_name            = var.cert_bucket_name
-  cert_pw                     = var.ipa_replica1_cert_pw
+  cert_pw                     = var.replica1_cert_pw
   cert_read_role_arn          = module.certreadrole_ipa_replica1.arn
   hostname                    = "ipa-replica1.${var.cool_domain}"
   master_hostname             = "ipa.${var.cool_domain}"
@@ -57,10 +57,10 @@ module "ipa_replica2" {
     aws.public_dns = aws.public_dns
   }
 
-  admin_pw                    = var.ipa_admin_pw
+  admin_pw                    = var.admin_pw
   associate_public_ip_address = true
   cert_bucket_name            = var.cert_bucket_name
-  cert_pw                     = var.ipa_replica2_cert_pw
+  cert_pw                     = var.replica2_cert_pw
   cert_read_role_arn          = module.certreadrole_ipa_replica2.arn
   hostname                    = "ipa-replica2.${var.cool_domain}"
   master_hostname             = "ipa.${var.cool_domain}"

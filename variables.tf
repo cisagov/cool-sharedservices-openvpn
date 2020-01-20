@@ -4,6 +4,10 @@
 # You must provide a value for each of these parameters.
 # ------------------------------------------------------------------------------
 
+variable "admin_pw" {
+  description = "The password for the Kerberos admin role."
+}
+
 variable "cert_role_arn" {
   description = "The ARN of the role to assume when creating a role to allow reading certboto certificate data."
 }
@@ -12,28 +16,16 @@ variable "default_role_arn" {
   description = "The ARN of the role to assume when performing most Terraform tasks."
 }
 
+variable "directory_service_pw" {
+  description = "The password for the IPA master's directory service."
+}
+
 variable "dns_role_arn" {
   description = "The ARN of the role to assume when performing public DNS Terraform tasks."
 }
 
-variable "ipa_admin_pw" {
-  description = "The password for the Kerberos admin role."
-}
-
-variable "ipa_directory_service_pw" {
-  description = "The password for the IPA master's directory service."
-}
-
-variable "ipa_master_cert_pw" {
+variable "master_cert_pw" {
   description = "The password for the IPA master's certificate."
-}
-
-variable "ipa_replica1_cert_pw" {
-  description = "The password for the first IPA replica's certificate."
-}
-
-variable "ipa_replica2_cert_pw" {
-  description = "The password for the second IPA replica's certificate."
 }
 
 variable "master_private_reverse_zone_id" {
@@ -48,12 +40,20 @@ variable "private_zone_id" {
   description = "The zone ID corresponding to the private Route53 zone for the COOL shared services VPC (e.g. \"Z01234567YYYYY89FFF0T\")."
 }
 
+variable "replica1_cert_pw" {
+  description = "The password for the first IPA replica's certificate."
+}
+
 variable "replica1_private_reverse_zone_id" {
   description = "The zone ID corresponding to the private Route53 reverse zone appropriate for the first IPA replica (e.g. \"Z01234567YYYYY89FFF0T\")."
 }
 
 variable "replica1_subnet_id" {
   description = "The ID of the subnet where the first IPA replica is to be deployed (e.g. \"subnet-0123456789abcdef0\")."
+}
+
+variable "replica2_cert_pw" {
+  description = "The password for the second IPA replica's certificate."
 }
 
 variable "replica2_private_reverse_zone_id" {
@@ -76,7 +76,7 @@ variable "aws_region" {
 }
 
 variable "cert_bucket_name" {
-  description = "The AWS region where the shared services account is to be created (e.g. \"us-east-1\")."
+  description = "The name of the AWS S3 bucket where certificates are stored."
   default     = "cool-certificates"
 }
 
@@ -86,7 +86,7 @@ variable "cool_domain" {
 }
 
 variable "public_zone_name" {
-  description = "The name of the public Route53 zone in Route53 where public DNS records should be created (e.g. \"cyber.dhs.gov.\")."
+  description = "The name of the public Route53 zone where public DNS records should be created (e.g. \"cyber.dhs.gov.\")."
   default     = "cyber.dhs.gov."
 }
 
