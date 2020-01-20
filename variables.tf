@@ -36,18 +36,32 @@ variable "ipa_replica2_cert_pw" {
   description = "The password for the second IPA replica's certificate."
 }
 
-variable "private_subnet_cidr_blocks" {
-  type        = list(string)
-  description = "The CIDR blocks corresponding to the public subnets to be associated with the VPC (e.g. [\"10.10.0.0/24\", \"10.10.1.0/24\"]).  These must be /24 blocks, since we are using them to create reverse DNS zones."
+variable "master_private_reverse_zone_id" {
+  description = "The zone ID corresponding to the private Route53 reverse zone appropriate for the IPA master (e.g. \"Z01234567YYYYY89FFF0T\")."
 }
 
-variable "public_subnet_cidr_blocks" {
-  type        = list(string)
-  description = "The CIDR blocks corresponding to the public subnets to be associated with the VPC (e.g. [\"10.10.0.0/24\", \"10.10.1.0/24\"]).  These must be /24 blocks, since we are using them to create reverse DNS zones."
+variable "master_subnet_id" {
+  description = "The ID of the subnet where the IPA master is to be deployed (e.g. \"subnet-0123456789abcdef0\")."
 }
 
-variable "vpc_cidr_block" {
-  description = "The overall CIDR block to be associated with the VPC (e.g. \"10.10.0.0/16\")."
+variable "private_zone_id" {
+  description = "The zone ID corresponding to the private Route53 zone for the COOL shared services VPC (e.g. \"Z01234567YYYYY89FFF0T\")."
+}
+
+variable "replica1_private_reverse_zone_id" {
+  description = "The zone ID corresponding to the private Route53 reverse zone appropriate for the first IPA replica (e.g. \"Z01234567YYYYY89FFF0T\")."
+}
+
+variable "replica1_subnet_id" {
+  description = "The ID of the subnet where the first IPA replica is to be deployed (e.g. \"subnet-0123456789abcdef0\")."
+}
+
+variable "replica2_private_reverse_zone_id" {
+  description = "The zone ID corresponding to the private Route53 reverse zone appropriate for the second IPA replica (e.g. \"Z01234567YYYYY89FFF0T\")."
+}
+
+variable "replica2_subnet_id" {
+  description = "The ID of the subnet where the second IPA replica is to be deployed (e.g. \"subnet-0123456789abcdef0\")."
 }
 
 # ------------------------------------------------------------------------------
