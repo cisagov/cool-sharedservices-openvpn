@@ -1,6 +1,6 @@
-# cool-shared-services #
+# cool-shared-services-freeipa #
 
-[![GitHub Build Status](https://github.com/cisagov/cool-shared-services/workflows/build/badge.svg)](https://github.com/cisagov/cool-shared-services/actions)
+[![GitHub Build Status](https://github.com/cisagov/cool-shared-services-freeipa/workflows/build/badge.svg)](https://github.com/cisagov/cool-shared-services-freeipa/actions)
 
 This is a generic skeleton project that can be used to quickly get a
 new [cisagov](https://github.com/cisagov) [Terraform
@@ -18,7 +18,7 @@ details on Terraform modules and the standard module structure.
 
 ```hcl
 module "example" {
-  source = "github.com/cisagov/cool-shared-services"
+  source = "github.com/cisagov/cool-shared-services-freeipa"
 
   aws_region            = "us-west-1"
   aws_availability_zone = "b"
@@ -30,10 +30,6 @@ module "example" {
   }
 }
 ```
-
-## Examples ##
-
-* [Deploying into the default VPC](https://github.com/cisagov/cool-shared-services/tree/develop/examples/default_vpc)
 
 ## Inputs ##
 
