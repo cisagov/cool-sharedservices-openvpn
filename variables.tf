@@ -9,11 +9,11 @@ variable "admin_pw" {
 }
 
 variable "cert_role_arn" {
-  description = "The ARN of the role to assume when creating a role to allow reading certboto certificate data."
+  description = "The ARN of the role to assume when creating a role to allow reading certboto certificate data (e.g. \"arn:aws:iam::123456789012:role/ReadCert-example.com\")."
 }
 
 variable "default_role_arn" {
-  description = "The ARN of the role to assume when performing most Terraform tasks."
+  description = "The ARN of the role to assume when performing most Terraform tasks (e.g. \"arn:aws:iam::123456789012:role/TerraformRole\")."
 }
 
 variable "directory_service_pw" {
@@ -21,7 +21,7 @@ variable "directory_service_pw" {
 }
 
 variable "dns_role_arn" {
-  description = "The ARN of the role to assume when performing public DNS Terraform tasks."
+  description = "The ARN of the role to assume when performing public DNS Terraform tasks (e.g. \"arn:aws:iam::123456789012:role/DnsRole\")."
 }
 
 variable "master_cert_pw" {
