@@ -5,35 +5,35 @@
 # ------------------------------------------------------------------------------
 
 variable "cert_role_arn" {
-  description = "The ARN of the role to assume when creating a role to allow reading certboto certificate data"
+  description = "The ARN of the role to assume when creating a role to allow reading certboto certificate data."
 }
 
 variable "default_role_arn" {
-  description = "The ARN of the role to assume when performing most Terraform tasks"
+  description = "The ARN of the role to assume when performing most Terraform tasks."
 }
 
 variable "dns_role_arn" {
-  description = "The ARN of the role to assume when performing public DNS Terraform tasks"
+  description = "The ARN of the role to assume when performing public DNS Terraform tasks."
 }
 
 variable "ipa_admin_pw" {
-  description = "The password for the Kerberos admin role"
+  description = "The password for the Kerberos admin role."
 }
 
 variable "ipa_directory_service_pw" {
-  description = "The password for the IPA master's directory service"
+  description = "The password for the IPA master's directory service."
 }
 
 variable "ipa_master_cert_pw" {
-  description = "The password for the IPA master's certificate"
+  description = "The password for the IPA master's certificate."
 }
 
 variable "ipa_replica1_cert_pw" {
-  description = "The password for the first IPA replica's certificate"
+  description = "The password for the first IPA replica's certificate."
 }
 
 variable "ipa_replica2_cert_pw" {
-  description = "The password for the second IPA replica's certificate"
+  description = "The password for the second IPA replica's certificate."
 }
 
 variable "private_subnet_cidr_blocks" {
@@ -78,12 +78,12 @@ variable "public_zone_name" {
 
 variable "tags" {
   type        = map(string)
-  description = "Tags to apply to all AWS resources created"
+  description = "Tags to apply to all AWS resources created."
   default     = {}
 }
 
 variable "trusted_cidr_blocks" {
   type        = list(string)
-  description = "A list of the CIDR blocks outside the VPC that are allowed to access the IPA servers (e.g. [\"10.10.0.0/16\", \"10.11.0.0/16\"])"
+  description = "A list of the CIDR blocks outside the VPC that are allowed to access the IPA servers (e.g. [\"10.10.0.0/16\", \"10.11.0.0/16\"])."
   default     = []
 }
