@@ -2,17 +2,10 @@
 
 [![GitHub Build Status](https://github.com/cisagov/cool-shared-services-freeipa/workflows/build/badge.svg)](https://github.com/cisagov/cool-shared-services-freeipa/actions)
 
-This is a generic skeleton project that can be used to quickly get a
-new [cisagov](https://github.com/cisagov) [Terraform
-module](https://www.terraform.io/docs/modules/index.html) GitHub
-repository started.  This skeleton project contains [licensing
-information](LICENSE), as well as [pre-commit
-hooks](https://pre-commit.com) and
-[GitHub Actions](https://github.com/features/actions) configurations
-appropriate for the major languages that we use.
-
-See [here](https://www.terraform.io/docs/modules/index.html) for more
-details on Terraform modules and the standard module structure.
+This is a Terraform deployment that creates a FreeIPA master and
+multiple FreeIPA replicas in the COOL shared services environment.
+This deployment should be laid down on top of
+[cisagov/cool-shared-services-networking](https://github.com/cisagov/cool-shared-services-networking).
 
 ## Usage ##
 
@@ -20,14 +13,34 @@ details on Terraform modules and the standard module structure.
 module "example" {
   source = "github.com/cisagov/cool-shared-services-freeipa"
 
-  aws_region            = "us-west-1"
-  aws_availability_zone = "b"
-  subnet_id             = "subnet-0123456789abcdef0"
-
-  tags = {
+  admin_pw                         = "thepassword"
+  aws_region                       = "us-east-1"
+  cert_bucket_name                 = "certbucket"
+  cert_role_arn                    = "arn:aws:iam::123456789012:role/ReadCert-example.com"
+  cool_domain                      = "example.com"
+  default_role_arn                 = "arn:aws:iam::123456789012:role/TerraformRole"
+  directory_service_pw             = "thepassword"
+  dns_role_arn                     = "arn:aws:iam::123456789012:role/DnsRole"
+  hostname                         = "ipa.example.com"
+  master_cert_pw                   = "lemmy"
+  master_private_reverse_zone_id   = "ZLY47KYR9X93M"
+  master_subnet_id                 = "subnet-0123456789abcdef0"
+  private_zone_id                  = "ZKX36JXQ8W82L"
+  public_zone_name                 = "ipa.example.gov"
+  replica1_cert_pw                 = "lemmy"
+  replica1_private_reverse_zone_id = "ZLY47KYR9X93N"
+  replica1_subnet_id               = "subnet-0123456789abcdef1"
+  replica2_cert_pw                 = "lemmy"
+  replica2_private_reverse_zone_id = "ZLY47KYR9X93N"
+  replica2_subnet_id               = "subnet-0123456789abcdef1"
+  tags                             = {
     Key1 = "Value1"
     Key2 = "Value2"
   }
+  trusted_cidr_blocks              = [
+    "10.99.49.0/24",
+    "10.99.52.0/24"
+  ]
 }
 ```
 
@@ -35,20 +48,40 @@ module "example" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-------:|:--------:|
-| aws_region | The AWS region to deploy into (e.g. us-east-1) | string | | yes |
-| aws_availability_zone | The AWS availability zone to deploy into (e.g. a, b, c, etc.) | string | | yes |
-| subnet_id | The ID of the AWS subnet to deploy into (e.g. subnet-0123456789abcdef0) | string | | yes |
-| tags | Tags to apply to all AWS resources created | map(string) | `{}` | no |
+| admin_pw | The password for the Kerberos admin role. | string | | yes |
+| aws_region | The AWS region to deploy into (e.g. us-east-1). | string | | yes |
+| cert_bucket_name | The name of the AWS S3 bucket where certificates are stored. | string | `cool-certificates` | no |
+| cert_role_arn | The ARN of the role to assume when creating a role to allow reading certboto certificate data. | string | | yes |
+| cool_domain | The domain where the COOL resources reside (e.g. "cool.cyber.dhs.gov"). | string | `cool.cyber.dhs.gov` | no |
+| default_role_arn | The ARN of the role to assume when performing most Terraform tasks. | string | | yes |
+| directory_service_pw | The password for the IPA master's directory service. | string | | yes |
+| dns_role_arn | The ARN of the role to assume when performing public DNS Terraform tasks. | string | | yes |
+| master_cert_pw | The password for the IPA master's certificate. | string | | yes |
+| master_private_reverse_zone_id | The zone ID corresponding to the private Route53 reverse zone appropriate for the IPA master (e.g. "Z01234567YYYYY89FFF0T"). | string | | yes |
+| master_subnet_id | The ID of the subnet where the IPA master is to be deployed (e.g. "subnet-0123456789abcdef0"). | string | | yes |
+| private_zone_id | The zone ID corresponding to the private Route53 zone for the COOL shared services VPC (e.g. "Z01234567YYYYY89FFF0T"). | string | | yes |
+| public_zone_name | The name of the public Route53 zone where public DNS records should be created (e.g. "cyber.dhs.gov."). | string | `cyber.dhs.gov` | no |
+| replica1_cert_pw | The password for the first IPA replica's certificate. | string | | yes |
+| replica1_private_reverse_zone_id | The zone ID corresponding to the private Route53 reverse zone appropriate for the first IPA replica (e.g. "Z01234567YYYYY89FFF0T"). | string | | yes |
+| replica1_subnet_id | The ID of the subnet where the first IPA replica is to be deployed (e.g. "subnet-0123456789abcdef0"). | string | | yes |
+| replica2_cert_pw | The password for the second IPA replica's certificate. | string | | yes |
+| replica2_private_reverse_zone_id | The zone ID corresponding to the private Route53 reverse zone appropriate for the second IPA replica (e.g. "Z01234567YYYYY89FFF0T"). | string | | yes |
+| replica2_subnet_id | The ID of the subnet where the second IPA replica is to be deployed (e.g. "subnet-0123456789abcdef0"). | string | | yes |
+| tags | Tags to apply to all AWS resources created. | map(string) | `{}` | no |
+| trusted_cidr_blocks | A list of the CIDR blocks outside the VPC that are allowed to access the IPA servers (e.g. ["10.10.0.0/16", "10.11.0.0/16"]). | list(string) | `[]` | no |
 
 ## Outputs ##
 
 | Name | Description |
 |------|-------------|
-| id | The EC2 instance ID |
-| arn | The EC2 instance ARN |
-| availability_zone | The AZ where the EC2 instance is deployed |
-| private_ip | The private IP of the EC2 instance |
-| subnet_id | The ID of the subnet where the EC2 instance is deployed |
+| client_security_group_id | The ID corresponding to the IPA client security group. |
+| master_cert_read_role_arn | The ARN corresponding to the role used by the IPA master to read its certificate information. |
+| master_id | The EC2 instance ID corresponding to the IPA master. |
+| replica1_cert_read_role_arn | The ARN corresponding to the role used by the first IPA replica to read its certificate information. |
+| replica1_id | The EC2 instance ID corresponding to the first IPA replica. |
+| replica2_cert_read_role_arn | The ARN corresponding to the role used by the second IPA replica to read its certificate information. |
+| replica2_id | The EC2 instance ID corresponding to the second IPA replica. |
+| server_security_group_id | The ID corresponding to the IPA server security group. |
 
 ## Contributing ##
 
