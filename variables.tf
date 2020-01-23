@@ -5,7 +5,7 @@
 # ------------------------------------------------------------------------------
 
 variable "cert_create_read_role_arn" {
-  description = "The ARN of the role to assume when creating the AWS IAM role to read the OpenVPN server certificate (e.g. \"arn:aws:iam::123456789012:role/CertReadRole\")."
+  description = "The ARN of the role to assume when creating the AWS IAM role to read the OpenVPN server certificate (e.g. \"arn:aws:iam::123456789012:role/CertCreateReadRole\")."
 }
 
 variable "default_role_arn" {
