@@ -21,12 +21,12 @@ module "openvpn" {
   cert_read_role_accounts_allowed = [
     local.shared_services_account_id
   ]
-  client_network          = ""
+  client_network          = var.client_network
   domain                  = var.public_zone_name
   freeipa_admin_pw        = var.freeipa_admin_pw
   freeipa_realm           = upper(var.cool_domain)
   hostname                = "vpn"
-  private_networks        = []
+  private_networks        = var.private_networks
   private_reverse_zone_id = var.private_reverse_zone_id
   private_zone_id         = var.private_zone_id
   security_groups = [
