@@ -19,11 +19,16 @@ module "example" {
   aws_region                       = "us-east-1"
   cert_bucket_name                 = "certbucket"
   cert_create_read_role_arn        = "arn:aws:iam::123456789012:role/CertCreateReadRole"
+  client_network                   = "10.99.99.0 255.255.255.0"
   cool_domain                      = "example.com"
   default_role_arn                 = "arn:aws:iam::123456789012:role/TerraformRole"
   dns_role_arn                     = "arn:aws:iam::123456789012:role/DnsRole"
   freeipa_admin_pw                 = "thepassword"
   freeipa_client_security_group_id = "sg-0123456789abcdef0"
+  private_networks                 = [
+    "10.99.0.0 255.255.255.0",
+    "10.99.10.0 255.255.255.0"
+  ]
   private_reverse_zone_id          = "ZLY47KYR9X93M"
   private_zone_id                  = "ZKX36JXQ8W82L"
   public_zone_name                 = "ipa.example.gov"
