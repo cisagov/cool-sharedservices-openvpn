@@ -5,7 +5,11 @@
 # ------------------------------------------------------------------------------
 
 variable "cert_create_read_role_arn" {
-  description = "The ARN of the role to assume when creating the AWS IAM role to read the OpenVPN server certificate (e.g. \"arn:aws:iam::123456789012:role/CertReadRole\")."
+  description = "The ARN of the role to assume when creating the AWS IAM role to read the OpenVPN server certificate (e.g. \"arn:aws:iam::123456789012:role/CertCreateReadRole\")."
+}
+
+variable "client_network" {
+  description = "A string containing the network and netmask to assign client addresses. The server will take the first address. (e.g. \"10.240.0.0 255.255.255.0\")."
 }
 
 variable "default_role_arn" {
@@ -22,6 +26,11 @@ variable "freeipa_admin_pw" {
 
 variable "freeipa_client_security_group_id" {
   description = "The ID of the FreeIPA client security group (e.g. \"sg-0123456789abcdef0\")."
+}
+
+variable "private_networks" {
+  type        = list(string)
+  description = "A list of strings, each of which contains a network and netmask defining a list of subnets that exist behind the VPN server (e.g. [\"10.224.0.0 255.240.0.0\", \"192.168.100.0 255.255.255.0\"]).  These will be pushed to the clients."
 }
 
 variable "private_reverse_zone_id" {
