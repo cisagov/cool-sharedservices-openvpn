@@ -4,20 +4,8 @@
 # You must provide a value for each of these parameters.
 # ------------------------------------------------------------------------------
 
-variable "cert_create_read_role_arn" {
-  description = "The ARN of the role to assume when creating the AWS IAM role to read the OpenVPN server certificate (e.g. \"arn:aws:iam::123456789012:role/CertCreateReadRole\")."
-}
-
 variable "client_network" {
   description = "A string containing the network and netmask to assign client addresses. The server will take the first address. (e.g. \"10.240.0.0 255.255.255.0\")."
-}
-
-variable "default_role_arn" {
-  description = "The ARN of the role to assume when performing most Terraform tasks (e.g. \"arn:aws:iam::123456789012:role/TerraformRole\")."
-}
-
-variable "dns_role_arn" {
-  description = "The ARN of the role to assume when performing public DNS Terraform tasks (e.g. \"arn:aws:iam::123456789012:role/DnsRole\")."
 }
 
 variable "freeipa_admin_pw" {
@@ -39,10 +27,6 @@ variable "private_reverse_zone_id" {
 
 variable "private_zone_id" {
   description = "The zone ID corresponding to the private Route53 zone for the COOL shared services VPC (e.g. \"Z01234567YYYYY89FFF0T\")."
-}
-
-variable "ssm_create_read_role_arn" {
-  description = "The ARN of the role to assume when creating the AWS IAM role to read the SSM data required by the OpenVPN server (e.g. \"arn:aws:iam::123456789012:role/SsmReadRole\")."
 }
 
 variable "subnet_id" {
