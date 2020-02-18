@@ -54,6 +54,21 @@ variable "cool_domain" {
   default     = "cool.cyber.dhs.gov"
 }
 
+variable "provisionaccount_role_name" {
+  description = "The name of the IAM role that allows sufficient permissions to provision all AWS resources in the Shared Services account."
+  default     = "ProvisionAccount"
+}
+
+variable "provisionopenvpn_policy_description" {
+  description = "The description to associate with the IAM policy that allows provisioning of OpenVPN in the Shared Services account."
+  default     = "Allows provisioning of OpenVPN in the Shared Services account."
+}
+
+variable "provisionopenvpn_policy_name" {
+  description = "The name to assign the IAM policy that allows provisioning of OpenVPN in the Shared Services account."
+  default     = "ProvisionOpenvpn"
+}
+
 variable "public_zone_name" {
   description = "The name of the public Route53 zone where public DNS records should be created (e.g. \"cyber.dhs.gov.\")."
   default     = "cyber.dhs.gov."
