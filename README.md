@@ -10,41 +10,6 @@ after
 [cisagov/cool-sharedservices-freeipa](https://github.com/cisagov/cool-sharedservices-freeipa)
 has been applied
 
-## Usage ##
-
-```hcl
-module "example" {
-  source = "github.com/cisagov/cool-shared-services-openvpn"
-
-  aws_region                       = "us-east-1"
-  cert_bucket_name                 = "certbucket"
-  cert_create_read_role_arn        = "arn:aws:iam::123456789012:role/CertCreateReadRole"
-  client_network                   = "10.99.99.0 255.255.255.0"
-  cool_domain                      = "example.com"
-  default_role_arn                 = "arn:aws:iam::123456789012:role/TerraformRole"
-  dns_role_arn                     = "arn:aws:iam::123456789012:role/DnsRole"
-  freeipa_admin_pw                 = "thepassword"
-  freeipa_client_security_group_id = "sg-0123456789abcdef0"
-  private_networks                 = [
-    "10.99.0.0 255.255.255.0",
-    "10.99.10.0 255.255.255.0"
-  ]
-  private_reverse_zone_id          = "ZLY47KYR9X93M"
-  private_zone_id                  = "ZKX36JXQ8W82L"
-  public_zone_name                 = "ipa.example.gov"
-  ssm_create_read_role_arn         = "arn:aws:iam::123456789012:role/SsmCreateReadRole"
-  subnet_id                        = "subnet-0123456789abcdef0"
-  tags                             = {
-    Key1 = "Value1"
-    Key2 = "Value2"
-  }
-  trusted_cidr_blocks              = [
-    "10.99.49.0/24",
-    "10.99.52.0/24"
-  ]
-}
-```
-
 ## Inputs ##
 
 | Name | Description | Type | Default | Required |
