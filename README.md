@@ -1,13 +1,13 @@
-# cool-shared-services-openvpn #
+# cool-sharedservices-openvpn #
 
-[![GitHub Build Status](https://github.com/cisagov/cool-shared-services-openvpn/workflows/build/badge.svg)](https://github.com/cisagov/cool-shared-services-openvpn/actions)
+[![GitHub Build Status](https://github.com/cisagov/cool-sharedservices-openvpn/workflows/build/badge.svg)](https://github.com/cisagov/cool-sharedservices-openvpn/actions)
 
 This is a Terraform module for creating an OpenVPN server in the COOL
-shared services environment.  This deployment should be laid down on
-top of
-[cisagov/cool-shared-services-networking](https://github.com/cisagov/cool-shared-services-networking),
+Shared Services account.  This deployment should be laid down on top
+of
+[cisagov/cool-sharedservices-networking](https://github.com/cisagov/cool-sharedservices-networking),
 after
-[cisagov/cool-shared-services-freeipa](https://github.com/cisagov/cool-shared-services-freeipa)
+[cisagov/cool-sharedservices-freeipa](https://github.com/cisagov/cool-sharedservices-freeipa)
 has been applied
 
 ## Usage ##
