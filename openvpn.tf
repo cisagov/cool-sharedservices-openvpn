@@ -1,9 +1,12 @@
 #-------------------------------------------------------------------------------
 # Configure the OpenVPN server module.
 #-------------------------------------------------------------------------------
-locals {
-  # We can extract this from the variable default_role_arn
-  shared_services_account_id = split(":", var.default_role_arn)[4]
+
+# ------------------------------------------------------------------------------
+# We can get the account ID of the Shared Services account from the
+# default provider's caller identity.
+# ------------------------------------------------------------------------------
+data "aws_caller_identity" "default" {
 }
 
 module "openvpn" {
@@ -19,7 +22,7 @@ module "openvpn" {
   # aws_instance_type               = "t3.small"
   cert_bucket_name = var.cert_bucket_name
   cert_read_role_accounts_allowed = [
-    local.shared_services_account_id
+    data.aws_caller_identity.default.account_id
   ]
   client_network          = var.client_network
   domain                  = var.public_zone_name
@@ -33,7 +36,7 @@ module "openvpn" {
     var.freeipa_client_security_group_id
   ]
   ssm_read_role_accounts_allowed = [
-    local.shared_services_account_id
+    data.aws_caller_identity.default.account_id
   ]
   subdomain           = "trimsuffix(var.cool_domain, .${var.public_zone_name})"
   subnet_id           = var.subnet_id
