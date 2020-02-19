@@ -10,13 +10,13 @@ provider "aws" {
 }
 
 provider "aws" {
-  alias   = "provision_cert_read_role"
+  alias   = "provision_certificate_read_role"
   profile = "cool-dns-provisioncertificatereadroles"
   region  = var.aws_region
 }
 
 provider "aws" {
-  alias   = "provision_ssm_read_role"
+  alias   = "provision_ssm_parameter_read_role"
   profile = "cool-images-provisionparameterstorereadroles"
   region  = var.aws_region
 }

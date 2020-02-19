@@ -15,8 +15,8 @@ module "openvpn" {
   providers = {
     aws                = aws
     aws.dns            = aws.public_dns
-    aws.cert_read_role = aws.provision_cert_read_role
-    aws.ssm_read_role  = aws.provision_ssm_read_role
+    aws.cert_read_role = aws.provision_certificate_read_role
+    aws.ssm_read_role  = aws.provision_ssm_parameter_read_role
   }
 
   # aws_instance_type               = "t3.small"
