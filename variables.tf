@@ -66,7 +66,7 @@ variable "provisionopenvpn_policy_description" {
 
 variable "provisionopenvpn_policy_name" {
   description = "The name to assign the IAM policy that allows provisioning of OpenVPN in the Shared Services account."
-  default     = "ProvisionOpenvpn"
+  default     = "ProvisionOpenVPN"
 }
 
 variable "public_zone_name" {
