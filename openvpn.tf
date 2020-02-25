@@ -39,7 +39,7 @@ module "openvpn" {
   ssm_read_role_accounts_allowed = [
     data.aws_caller_identity.default.account_id
   ]
-  subdomain           = "trimsuffix(var.cool_domain, .${var.public_zone_name})"
+  subdomain           = trimsuffix("${var.cool_domain}.", ".${var.public_zone_name}")
   subnet_id           = var.subnet_id
   tags                = var.tags
   trusted_cidr_blocks = var.trusted_cidr_blocks
