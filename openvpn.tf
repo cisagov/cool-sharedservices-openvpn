@@ -19,7 +19,8 @@ module "openvpn" {
     aws.ssm_read_role  = aws.provision_ssm_parameter_read_role
   }
 
-  # aws_instance_type               = "t3.small"
+  ami_owner_account_id = "207871073513" # The COOL Images account
+  # aws_instance_type       = "t3.small"
   cert_bucket_name = var.cert_bucket_name
   cert_read_role_accounts_allowed = [
     data.aws_caller_identity.default.account_id
