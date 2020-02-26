@@ -29,7 +29,7 @@ module "openvpn" {
   domain                  = var.public_zone_name
   freeipa_admin_pw        = var.freeipa_admin_pw
   freeipa_realm           = upper(var.cool_domain)
-  hostname                = "vpn"
+  hostname                = "vpn.${var.cool_domain}"
   private_networks        = var.private_networks
   private_reverse_zone_id = var.private_reverse_zone_id
   private_zone_id         = var.private_zone_id
@@ -39,7 +39,6 @@ module "openvpn" {
   ssm_read_role_accounts_allowed = [
     data.aws_caller_identity.default.account_id
   ]
-  subdomain           = trimsuffix("${var.cool_domain}.", ".${var.public_zone_name}")
   subnet_id           = var.subnet_id
   tags                = var.tags
   trusted_cidr_blocks = var.trusted_cidr_blocks
