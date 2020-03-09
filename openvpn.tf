@@ -9,6 +9,12 @@
 data "aws_caller_identity" "default" {
 }
 
+locals {
+  # OpenVPN currently only uses a single public subnet, so grab the
+  # CIDR of the first one.
+  public_subnet_cidr = keys(data.terraform_remote_state.networking.outputs.public_subnets)[0]
+}
+
 module "openvpn" {
   source = "github.com/cisagov/openvpn-server-tf-module"
 
@@ -31,7 +37,7 @@ module "openvpn" {
   freeipa_realm           = upper(var.cool_domain)
   hostname                = "vpn.${var.cool_domain}"
   private_networks        = [data.terraform_remote_state.networking.outputs.vpc.cidr_block]
-  private_reverse_zone_id = data.terraform_remote_state.networking.outputs.public_subnet_private_reverse_zones["10.128.9.0/24"].id
+  private_reverse_zone_id = data.terraform_remote_state.networking.outputs.public_subnet_private_reverse_zones[local.public_subnet_cidr].id
   private_zone_id         = data.terraform_remote_state.networking.outputs.private_zone.id
   security_groups = [
     data.terraform_remote_state.freeipa.outputs.client_security_group.id
@@ -39,7 +45,7 @@ module "openvpn" {
   ssm_read_role_accounts_allowed = [
     data.aws_caller_identity.default.account_id
   ]
-  subnet_id           = data.terraform_remote_state.networking.outputs.public_subnets["10.128.9.0/24"].id
+  subnet_id           = data.terraform_remote_state.networking.outputs.public_subnets[local.public_subnet_cidr].id
   tags                = var.tags
   trusted_cidr_blocks = var.trusted_cidr_blocks
 }
