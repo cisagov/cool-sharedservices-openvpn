@@ -11,8 +11,19 @@ data "aws_caller_identity" "default" {
 
 locals {
   # OpenVPN currently only uses a single public subnet, so grab the
-  # CIDR of the first one.
-  public_subnet_cidr = keys(data.terraform_remote_state.networking.outputs.public_subnets)[0]
+  # CIDR of the one with the smallest third octet.
+  #
+  # It's tempting to just use keys()[0] here, but the keys are sorted
+  # lexicographically.  That means that "10.1.10.0/24" would come
+  # before "10.1.9.0/24".
+  public_subnet_cidrs = keys(data.terraform_remote_state.networking.outputs.public_subnets)
+  first_octet         = split(".", local.public_subnet_cidrs[0])[0]
+  second_octet        = split(".", local.public_subnet_cidrs[0])[1]
+  third_octets        = [for cidr in local.public_subnet_cidrs : split(".", cidr)[2]]
+  # This flatten([]) shouldn't be necessary, but it is.  I think this
+  # is related to hashicorp/terraform#22404.
+  third_octet         = min(flatten([local.third_octets])...)
+  openvpn_subnet_cidr = format("%d.%d.%d.0/24", local.first_octet, local.second_octet, local.third_octet)
 }
 
 module "openvpn" {
@@ -37,7 +48,7 @@ module "openvpn" {
   freeipa_realm           = upper(var.cool_domain)
   hostname                = "vpn.${var.cool_domain}"
   private_networks        = var.private_networks
-  private_reverse_zone_id = data.terraform_remote_state.networking.outputs.public_subnet_private_reverse_zones[local.public_subnet_cidr].id
+  private_reverse_zone_id = data.terraform_remote_state.networking.outputs.public_subnet_private_reverse_zones[local.openvpn_subnet_cidr].id
   private_zone_id         = data.terraform_remote_state.networking.outputs.private_zone.id
   security_groups = [
     data.terraform_remote_state.freeipa.outputs.client_security_group.id
@@ -45,7 +56,7 @@ module "openvpn" {
   ssm_read_role_accounts_allowed = [
     data.aws_caller_identity.default.account_id
   ]
-  subnet_id           = data.terraform_remote_state.networking.outputs.public_subnets[local.public_subnet_cidr].id
+  subnet_id           = data.terraform_remote_state.networking.outputs.public_subnets[local.openvpn_subnet_cidr].id
   tags                = var.tags
   trusted_cidr_blocks = var.trusted_cidr_blocks
 }
