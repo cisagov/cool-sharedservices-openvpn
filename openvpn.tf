@@ -36,7 +36,7 @@ module "openvpn" {
   freeipa_admin_pw        = var.freeipa_admin_pw
   freeipa_realm           = upper(var.cool_domain)
   hostname                = "vpn.${var.cool_domain}"
-  private_networks        = [data.terraform_remote_state.networking.outputs.vpc.cidr_block]
+  private_networks        = var.private_networks
   private_reverse_zone_id = data.terraform_remote_state.networking.outputs.public_subnet_private_reverse_zones[local.public_subnet_cidr].id
   private_zone_id         = data.terraform_remote_state.networking.outputs.private_zone.id
   security_groups = [

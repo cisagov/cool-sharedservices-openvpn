@@ -33,6 +33,11 @@ variable "cool_domain" {
   default     = "cool.cyber.dhs.gov"
 }
 
+variable "private_networks" {
+  type        = list(string)
+  description = "A list of strings, each of which contains a network and netmask defining a list of subnets that exist behind the VPN server (e.g. [\"10.224.0.0 255.240.0.0\", \"192.168.100.0 255.255.255.0\"]).  These will be pushed to the clients."
+}
+
 variable "provisionaccount_role_name" {
   description = "The name of the IAM role that allows sufficient permissions to provision all AWS resources in the Shared Services account."
   default     = "ProvisionAccount"

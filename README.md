@@ -22,6 +22,7 @@ has been applied
 | default_role_arn | The ARN of the role to assume when performing most Terraform tasks (e.g. "arn:aws:iam::123456789012:role/TerraformRole"). | string | | yes |
 | dns_role_arn | The ARN of the role to assume when performing public DNS Terraform tasks (e.g. "arn:aws:iam::123456789012:role/DnsRole"). | string | | yes |
 | freeipa_admin_pw | The password for the FreeIPA Kerberos admin role. | string | | yes |
+| private_networks | A list of strings, each of which contains a network and netmask defining a list of subnets that exist behind the VPN server (e.g. ["10.224.0.0 255.240.0.0", "192.168.100.0 255.255.255.0"]).  These will be pushed to the clients. | list(string) | | yes |
 | provisionaccount_role_name | The name of the IAM role that allows sufficient permissions to provision all AWS resources in the Shared Services account. | string | `ProvisionAccount` | no |
 | provisionopenvpn_policy_description | The description to associate with the IAM policy that allows provisioning of OpenVPN in the Shared Services account. | string | `Allows provisioning of OpenVPN in the Shared Services account.` | no |
 | provisionopenvpn_policy_name | The name to associate with the IAM policy that allows provisioning of OpenVPN in the Shared Services account. | string | `ProvisionOpenvpn` | no |
