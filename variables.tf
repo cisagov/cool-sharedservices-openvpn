@@ -12,27 +12,6 @@ variable "freeipa_admin_pw" {
   description = "The password for the Kerberos admin role."
 }
 
-variable "freeipa_client_security_group_id" {
-  description = "The ID of the FreeIPA client security group (e.g. \"sg-0123456789abcdef0\")."
-}
-
-variable "private_networks" {
-  type        = list(string)
-  description = "A list of strings, each of which contains a network and netmask defining a list of subnets that exist behind the VPN server (e.g. [\"10.224.0.0 255.240.0.0\", \"192.168.100.0 255.255.255.0\"]).  These will be pushed to the clients."
-}
-
-variable "private_reverse_zone_id" {
-  description = "The zone ID corresponding to the private Route53 reverse zone appropriate for the IPA master (e.g. \"Z01234567YYYYY89FFF0T\")."
-}
-
-variable "private_zone_id" {
-  description = "The zone ID corresponding to the private Route53 zone for the COOL shared services VPC (e.g. \"Z01234567YYYYY89FFF0T\")."
-}
-
-variable "subnet_id" {
-  description = "The ID of the subnet where the IPA master is to be deployed (e.g. \"subnet-0123456789abcdef0\")."
-}
-
 # ------------------------------------------------------------------------------
 # Optional parameters
 #

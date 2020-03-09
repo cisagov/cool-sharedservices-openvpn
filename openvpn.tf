@@ -30,16 +30,16 @@ module "openvpn" {
   freeipa_admin_pw        = var.freeipa_admin_pw
   freeipa_realm           = upper(var.cool_domain)
   hostname                = "vpn.${var.cool_domain}"
-  private_networks        = var.private_networks
-  private_reverse_zone_id = var.private_reverse_zone_id
-  private_zone_id         = var.private_zone_id
+  private_networks        = [data.terraform_remote_state.networking.outputs.vpc.cidr_block]
+  private_reverse_zone_id = data.terraform_remote_state.networking.outputs.public_subnet_private_reverse_zones["10.128.9.0/24"].id
+  private_zone_id         = data.terraform_remote_state.networking.outputs.private_zone.id
   security_groups = [
-    var.freeipa_client_security_group_id
+    data.terraform_remote_state.freeipa.outputs.client_security_group.id
   ]
   ssm_read_role_accounts_allowed = [
     data.aws_caller_identity.default.account_id
   ]
-  subnet_id           = var.subnet_id
+  subnet_id           = data.terraform_remote_state.networking.outputs.public_subnets["10.128.9.0/24"].id
   tags                = var.tags
   trusted_cidr_blocks = var.trusted_cidr_blocks
 }
