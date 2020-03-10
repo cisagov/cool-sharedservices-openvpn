@@ -3,6 +3,13 @@
 #
 # You must provide a value for each of these parameters.
 # ------------------------------------------------------------------------------
+variable "client_dns_search_domain" {
+  description = "The DNS search domain to be pushed to VPN clients."
+}
+
+variable "client_dns_server" {
+  description = "The address of the DNS server to be pushed to the VPN clients."
+}
 
 variable "client_network" {
   type        = string
