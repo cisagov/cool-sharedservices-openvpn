@@ -3,50 +3,24 @@
 #
 # You must provide a value for each of these parameters.
 # ------------------------------------------------------------------------------
+variable "client_dns_search_domain" {
+  type        = string
+  description = "The DNS search domain to be pushed to VPN clients."
+}
 
-variable "cert_create_read_role_arn" {
-  description = "The ARN of the role to assume when creating the AWS IAM role to read the OpenVPN server certificate (e.g. \"arn:aws:iam::123456789012:role/CertCreateReadRole\")."
+variable "client_dns_server" {
+  type        = string
+  description = "The address of the DNS server to be pushed to the VPN clients."
 }
 
 variable "client_network" {
+  type        = string
   description = "A string containing the network and netmask to assign client addresses. The server will take the first address. (e.g. \"10.240.0.0 255.255.255.0\")."
 }
 
-variable "default_role_arn" {
-  description = "The ARN of the role to assume when performing most Terraform tasks (e.g. \"arn:aws:iam::123456789012:role/TerraformRole\")."
-}
-
-variable "dns_role_arn" {
-  description = "The ARN of the role to assume when performing public DNS Terraform tasks (e.g. \"arn:aws:iam::123456789012:role/DnsRole\")."
-}
-
 variable "freeipa_admin_pw" {
+  type        = string
   description = "The password for the Kerberos admin role."
-}
-
-variable "freeipa_client_security_group_id" {
-  description = "The ID of the FreeIPA client security group (e.g. \"sg-0123456789abcdef0\")."
-}
-
-variable "private_networks" {
-  type        = list(string)
-  description = "A list of strings, each of which contains a network and netmask defining a list of subnets that exist behind the VPN server (e.g. [\"10.224.0.0 255.240.0.0\", \"192.168.100.0 255.255.255.0\"]).  These will be pushed to the clients."
-}
-
-variable "private_reverse_zone_id" {
-  description = "The zone ID corresponding to the private Route53 reverse zone appropriate for the IPA master (e.g. \"Z01234567YYYYY89FFF0T\")."
-}
-
-variable "private_zone_id" {
-  description = "The zone ID corresponding to the private Route53 zone for the COOL shared services VPC (e.g. \"Z01234567YYYYY89FFF0T\")."
-}
-
-variable "ssm_create_read_role_arn" {
-  description = "The ARN of the role to assume when creating the AWS IAM role to read the SSM data required by the OpenVPN server (e.g. \"arn:aws:iam::123456789012:role/SsmReadRole\")."
-}
-
-variable "subnet_id" {
-  description = "The ID of the subnet where the IPA master is to be deployed (e.g. \"subnet-0123456789abcdef0\")."
 }
 
 # ------------------------------------------------------------------------------
@@ -56,21 +30,48 @@ variable "subnet_id" {
 # ------------------------------------------------------------------------------
 
 variable "aws_region" {
+  type        = string
   description = "The AWS region where the shared services account is to be created (e.g. \"us-east-1\")."
   default     = "us-east-1"
 }
 
 variable "cert_bucket_name" {
+  type        = string
   description = "The name of the AWS S3 bucket where certificates are stored."
-  default     = "cool-certificates"
+  default     = "cisa-cool-certificates"
 }
 
 variable "cool_domain" {
+  type        = string
   description = "The domain where the COOL resources reside (e.g. \"cool.cyber.dhs.gov\")."
   default     = "cool.cyber.dhs.gov"
 }
 
+variable "private_networks" {
+  type        = list(string)
+  description = "A list of strings, each of which contains a network and netmask defining a list of subnets that exist behind the VPN server (e.g. [\"10.224.0.0 255.240.0.0\", \"192.168.100.0 255.255.255.0\"]).  These will be pushed to the clients."
+}
+
+variable "provisionaccount_role_name" {
+  type        = string
+  description = "The name of the IAM role that allows sufficient permissions to provision all AWS resources in the Shared Services account."
+  default     = "ProvisionAccount"
+}
+
+variable "provisionopenvpn_policy_description" {
+  type        = string
+  description = "The description to associate with the IAM policy that allows provisioning of OpenVPN in the Shared Services account."
+  default     = "Allows provisioning of OpenVPN in the Shared Services account."
+}
+
+variable "provisionopenvpn_policy_name" {
+  type        = string
+  description = "The name to assign the IAM policy that allows provisioning of OpenVPN in the Shared Services account."
+  default     = "ProvisionOpenVPN"
+}
+
 variable "public_zone_name" {
+  type        = string
   description = "The name of the public Route53 zone where public DNS records should be created (e.g. \"cyber.dhs.gov.\")."
   default     = "cyber.dhs.gov."
 }
