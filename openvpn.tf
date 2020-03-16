@@ -27,7 +27,7 @@ locals {
 }
 
 module "openvpn" {
-  source = "github.com/cisagov/openvpn-server-tf-module"
+  source = "github.com/cisagov/openvpn-server-tf-module?ref=improvement%2Fseparate-trusted-ip-lists-for-ssh-and-vpn"
 
   providers = {
     aws                = aws
@@ -58,7 +58,8 @@ module "openvpn" {
   ssm_read_role_accounts_allowed = [
     data.aws_caller_identity.default.account_id
   ]
-  subnet_id           = data.terraform_remote_state.networking.outputs.public_subnets[local.openvpn_subnet_cidr].id
-  tags                = var.tags
-  trusted_cidr_blocks = var.trusted_cidr_blocks
+  subnet_id               = data.terraform_remote_state.networking.outputs.public_subnets[local.openvpn_subnet_cidr].id
+  tags                    = var.tags
+  trusted_cidr_blocks_ssh = var.trusted_cidr_blocks_ssh
+  trusted_cidr_blocks_vpn = var.trusted_cidr_blocks_vpn
 }
