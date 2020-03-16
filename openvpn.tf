@@ -27,7 +27,7 @@ locals {
 }
 
 module "openvpn" {
-  source = "github.com/cisagov/openvpn-server-tf-module?ref=improvement%2Fseparate-trusted-ip-lists-for-ssh-and-vpn"
+  source = "github.com/cisagov/openvpn-server-tf-module"
 
   providers = {
     aws                = aws
