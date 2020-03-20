@@ -16,7 +16,7 @@ data "terraform_remote_state" "networking" {
     key            = "cool-sharedservices-networking/terraform.tfstate"
   }
 
-  workspace = "production"
+  workspace = terraform.workspace
 }
 
 data "terraform_remote_state" "freeipa" {
@@ -31,5 +31,5 @@ data "terraform_remote_state" "freeipa" {
     key            = "cool-sharedservices-freeipa/terraform.tfstate"
   }
 
-  workspace = "production"
+  workspace = terraform.workspace
 }
