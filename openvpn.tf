@@ -62,4 +62,5 @@ module "openvpn" {
   tags                    = var.tags
   trusted_cidr_blocks_ssh = var.trusted_cidr_blocks_ssh
   trusted_cidr_blocks_vpn = var.trusted_cidr_blocks_vpn
+  vpn_group               = "vpnusers"
 }
