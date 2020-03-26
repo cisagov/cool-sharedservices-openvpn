@@ -2,13 +2,6 @@
 # Configure the OpenVPN server module.
 #-------------------------------------------------------------------------------
 
-# ------------------------------------------------------------------------------
-# We can get the account ID of the Shared Services account from the
-# default provider's caller identity.
-# ------------------------------------------------------------------------------
-data "aws_caller_identity" "default" {
-}
-
 locals {
   # OpenVPN currently only uses a single public subnet, so grab the
   # CIDR of the one with the smallest third octet.
