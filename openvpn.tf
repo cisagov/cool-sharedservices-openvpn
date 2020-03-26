@@ -3,6 +3,30 @@
 #-------------------------------------------------------------------------------
 
 locals {
+  # Get Shared Services account ID from the default provider
+  this_account_id = data.aws_caller_identity.sharedservices.account_id
+
+  # Look up Shared Services account name from AWS organizations
+  # provider
+  this_account_name = [
+    for account in data.aws_organizations_organization.cool.accounts :
+    account.name
+    if account.id == local.this_account_id
+  ][0]
+
+  # Determine Shared Services account type based on account name.
+  #
+  # The account name format is "ACCOUNT_NAME (ACCOUNT_TYPE)" - for
+  # example, "Shared Services (Production)".
+  this_account_type = length(regexall("\\(([^()]*)\\)", local.this_account_name)) == 1 ? regex("\\(([^()]*)\\)", local.this_account_name)[0] : "Unknown"
+
+  # Determine the ID of the corresponding Images account
+  images_account_id = [
+    for account in data.aws_organizations_organization.cool.accounts :
+    account.id
+    if account.name == "Images (${local.this_account_type})"
+  ][0]
+
   # OpenVPN currently only uses a single public subnet, so grab the
   # CIDR of the one with the smallest third octet.
   #
@@ -29,11 +53,11 @@ module "openvpn" {
     aws.ssm_read_role  = aws.provision_ssm_parameter_read_role
   }
 
-  ami_owner_account_id = "207871073513" # The COOL Images account
+  ami_owner_account_id = local.images_account_id
   # aws_instance_type       = "t3.small"
   cert_bucket_name = var.cert_bucket_name
   cert_read_role_accounts_allowed = [
-    data.aws_caller_identity.default.account_id
+    data.aws_caller_identity.sharedservices.account_id
   ]
   client_dns_search_domain = var.client_dns_search_domain
   client_dns_server        = var.client_dns_server
@@ -49,7 +73,7 @@ module "openvpn" {
     data.terraform_remote_state.freeipa.outputs.client_security_group.id
   ]
   ssm_read_role_accounts_allowed = [
-    data.aws_caller_identity.default.account_id
+    data.aws_caller_identity.sharedservices.account_id
   ]
   subnet_id               = data.terraform_remote_state.networking.outputs.public_subnets[local.openvpn_subnet_cidr].id
   tags                    = var.tags
