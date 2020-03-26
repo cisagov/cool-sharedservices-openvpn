@@ -5,7 +5,7 @@ provider "aws" {
 
 provider "aws" {
   alias   = "public_dns"
-  profile = "cool-olddns-route53fullaccess"
+  profile = "cool-dns-route53resourcechange-cyber.dhs.gov"
   region  = var.aws_region
 }
 
