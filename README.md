@@ -25,7 +25,6 @@ has been applied
 | provisionaccount_role_name | The name of the IAM role that allows sufficient permissions to provision all AWS resources in the Shared Services account. | `string` | `ProvisionAccount` | no |
 | provisionopenvpn_policy_description | The description to associate with the IAM policy that allows provisioning of OpenVPN in the Shared Services account. | `string` | `Allows provisioning of OpenVPN in the Shared Services account.` | no |
 | provisionopenvpn_policy_name | The name to assign the IAM policy that allows provisioning of OpenVPN in the Shared Services account. | `string` | `ProvisionOpenVPN` | no |
-| public_zone_name | The name of the public Route53 zone where public DNS records should be created (e.g. "cyber.dhs.gov."). | `string` | `cyber.dhs.gov.` | no |
 | tags | Tags to apply to all AWS resources created. | `map(string)` | `{}` | no |
 | trusted_cidr_blocks_ssh | A list of the CIDR blocks that are allowed to access the ssh port on the VPN servers (e.g. ["10.10.0.0/16", "10.11.0.0/16"]). | `list(string)` | `[]` | no |
 | trusted_cidr_blocks_vpn | A list of the CIDR blocks that are allowed to access the VPN port on the VPN servers (e.g. ["10.10.0.0/16", "10.11.0.0/16"]). | `list(string)` | `[]` | no |

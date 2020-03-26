@@ -70,12 +70,6 @@ variable "provisionopenvpn_policy_name" {
   default     = "ProvisionOpenVPN"
 }
 
-variable "public_zone_name" {
-  type        = string
-  description = "The name of the public Route53 zone where public DNS records should be created (e.g. \"cyber.dhs.gov.\")."
-  default     = "cyber.dhs.gov."
-}
-
 variable "tags" {
   type        = map(string)
   description = "Tags to apply to all AWS resources created."
