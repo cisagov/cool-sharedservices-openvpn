@@ -5,7 +5,7 @@ provider "aws" {
 
 provider "aws" {
   alias   = "public_dns"
-  profile = "cool-olddns-route53fullaccess"
+  profile = "cool-dns-route53resourcechange-cyber.dhs.gov"
   region  = var.aws_region
 }
 
@@ -18,5 +18,11 @@ provider "aws" {
 provider "aws" {
   alias   = "provision_ssm_parameter_read_role"
   profile = "cool-images-provisionparameterstorereadroles"
+  region  = var.aws_region
+}
+
+provider "aws" {
+  alias   = "organizationsreadonly"
+  profile = "cool-master-organizationsreadonly"
   region  = var.aws_region
 }
