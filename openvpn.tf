@@ -61,6 +61,7 @@ module "openvpn" {
   ]
   client_dns_search_domain = var.client_dns_search_domain
   client_dns_server        = var.client_dns_server
+  client_motd_url          = var.client_motd_url
   client_network           = var.client_network
   freeipa_admin_pw         = var.freeipa_admin_pw
   freeipa_realm            = upper(var.cool_domain)

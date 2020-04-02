@@ -41,6 +41,12 @@ variable "cert_bucket_name" {
   default     = "cisa-cool-certificates"
 }
 
+variable "client_motd_url" {
+  type        = string
+  description = "A URL to the motd page.  This will be pushed to VPN clients as an environment variable."
+  default     = "https://github.com/cisagov/cool-system/blob/develop/motd.md#welcome-to-cisas-cloud-oriented-operations-lab-cool"
+}
+
 variable "cool_domain" {
   type        = string
   description = "The domain where the COOL resources reside (e.g. \"cool.cyber.dhs.gov\")."
