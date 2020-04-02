@@ -18,6 +18,7 @@ has been applied
 | cert_bucket_name | The name of the AWS S3 bucket where certificates are stored. | `string` | `cisa-cool-certificates` | no |
 | client_dns_search_domain | The DNS search domain to be pushed to VPN clients. | `string` | n/a | yes |
 | client_dns_server | The address of the DNS server to be pushed to the VPN clients. | `string` | n/a | yes |
+| client_motd_url | A URL to the motd page.  This will be pushed to VPN clients as an environment variable. | `string` | `https://github.com/cisagov/cool-system/blob/develop/motd.md#welcome-to-cisas-cloud-oriented-operations-lab-cool` | no |
 | client_network | A string containing the network and netmask to assign client addresses. The server will take the first address. (e.g. "10.240.0.0 255.255.255.0"). | `string` | n/a | yes |
 | cool_domain | The domain where the COOL resources reside (e.g. "cool.cyber.dhs.gov"). | `string` | `cool.cyber.dhs.gov` | no |
 | freeipa_admin_pw | The password for the Kerberos admin role. | `string` | n/a | yes |
