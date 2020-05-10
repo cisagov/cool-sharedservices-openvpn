@@ -37,6 +37,11 @@ has been applied
 | instance_id | The ID corresponding to the OpenVPN server EC2 instance. |
 | security_group_id | The ID corresponding to the OpenVPN server security group. |
 
+## Notes ##
+
+Running `pre-commit` requires running `terraform init` in every directory that
+contains Terraform code. In this repository, that is only the main directory.
+
 ## Contributing ##
 
 We welcome contributions!  Please see [here](CONTRIBUTING.md) for
