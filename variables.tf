@@ -82,12 +82,6 @@ variable "tags" {
   default     = {}
 }
 
-variable "trusted_cidr_blocks_ssh" {
-  type        = list(string)
-  description = "A list of the CIDR blocks that are allowed to access the ssh port on the VPN servers (e.g. [\"10.10.0.0/16\", \"10.11.0.0/16\"])."
-  default     = []
-}
-
 variable "trusted_cidr_blocks_vpn" {
   type        = list(string)
   description = "A list of the CIDR blocks that are allowed to access the VPN port on the VPN servers (e.g. [\"10.10.0.0/16\", \"10.11.0.0/16\"])."
