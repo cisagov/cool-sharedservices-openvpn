@@ -8,7 +8,35 @@ of
 [cisagov/cool-sharedservices-networking](https://github.com/cisagov/cool-sharedservices-networking),
 after
 [cisagov/cool-sharedservices-freeipa](https://github.com/cisagov/cool-sharedservices-freeipa)
-has been applied
+has been applied.
+
+## Pre-requisites ##
+
+- [Terraform](https://www.terraform.io/) installed on your system.
+- An accessible AWS S3 bucket to store Terraform state
+  (specified [here](backend.tf)).
+- An accessible AWS DynamoDB database to store the Terraform state lock
+  (specified [here](backend.tf)).
+- Access to all of the Terraform remote states specified in
+  [the remote states file](remote_states.tf).
+
+## Requirements ##
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
+
+## Providers ##
+
+| Name | Version |
+|------|---------|
+| aws | n/a |
+| aws.organizationsreadonly | n/a |
+| aws.public_dns | n/a |
+| aws.provision_certificate_read_role | n/a |
+| aws.provision_sharedservices | n/a |
+| aws.provision_ssm_parameter_read_role | n/a |
+| terraform | n/a |
 
 ## Inputs ##
 
