@@ -23,7 +23,7 @@ module "openvpn" {
   source = "github.com/cisagov/openvpn-server-tf-module"
 
   providers = {
-    aws                = aws
+    aws                = aws.provision_sharedservices
     aws.dns            = aws.public_dns
     aws.cert_read_role = aws.provision_certificate_read_role
     aws.ssm_read_role  = aws.provision_ssm_parameter_read_role

@@ -4,6 +4,8 @@
 # ------------------------------------------------------------------------------
 
 resource "aws_iam_role_policy_attachment" "provisionopenvpn_policy_attachment" {
+  provider = aws.provision_sharedservices
+
   policy_arn = aws_iam_policy.provisionopenvpn_policy.arn
   role       = var.provisionaccount_role_name
 }

@@ -17,6 +17,8 @@ data "aws_iam_policy_document" "provisionopenvpn_policy_doc" {
 }
 
 resource "aws_iam_policy" "provisionopenvpn_policy" {
+  provider = aws.provision_sharedservices
+
   description = var.provisionopenvpn_policy_description
   name        = var.provisionopenvpn_policy_name
   policy      = data.aws_iam_policy_document.provisionopenvpn_policy_doc.json
