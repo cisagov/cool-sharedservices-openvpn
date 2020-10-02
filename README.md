@@ -24,24 +24,22 @@ has been applied.
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12 |
+| terraform | ~> 0.12.0 |
+| aws | ~> 2.0 |
 
 ## Providers ##
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
-| aws.organizationsreadonly | n/a |
-| aws.public_dns | n/a |
-| aws.provision_certificate_read_role | n/a |
-| aws.provision_sharedservices | n/a |
-| aws.provision_ssm_parameter_read_role | n/a |
+| aws | ~> 2.0 |
+| aws.organizationsreadonly | ~> 2.0 |
+| aws.provision_sharedservices | ~> 2.0 |
 | terraform | n/a |
 
 ## Inputs ##
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | aws_region | The AWS region where the shared services account is to be created (e.g. "us-east-1"). | `string` | `us-east-1` | no |
 | cert_bucket_name | The name of the AWS S3 bucket where certificates are stored. | `string` | `cisa-cool-certificates` | no |
 | client_dns_search_domain | The DNS search domain to be pushed to VPN clients. | `string` | n/a | yes |
@@ -49,7 +47,6 @@ has been applied.
 | client_motd_url | A URL to the motd page.  This will be pushed to VPN clients as an environment variable. | `string` | `https://github.com/cisagov/cool-system/blob/develop/motd.md#welcome-to-cisas-cloud-oriented-operations-lab-cool` | no |
 | client_network | A string containing the network and netmask to assign client addresses. The server will take the first address. (e.g. "10.240.0.0 255.255.255.0"). | `string` | n/a | yes |
 | cool_domain | The domain where the COOL resources reside (e.g. "cool.cyber.dhs.gov"). | `string` | `cool.cyber.dhs.gov` | no |
-| freeipa_admin_pw | The password for the Kerberos admin role. | `string` | n/a | yes |
 | private_networks | A list of strings, each of which contains a network and netmask defining a list of subnets that exist behind the VPN server (e.g. ["10.224.0.0 255.240.0.0", "192.168.100.0 255.255.255.0"]).  These will be pushed to the clients. | `list(string)` | n/a | yes |
 | provisionaccount_role_name | The name of the IAM role that allows sufficient permissions to provision all AWS resources in the Shared Services account. | `string` | `ProvisionAccount` | no |
 | provisionopenvpn_policy_description | The description to associate with the IAM policy that allows provisioning of OpenVPN in the Shared Services account. | `string` | `Allows provisioning of OpenVPN in the Shared Services account.` | no |
