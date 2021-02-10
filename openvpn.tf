@@ -47,7 +47,8 @@ module "openvpn" {
   private_zone_id          = data.terraform_remote_state.networking.outputs.private_zone.id
   public_zone_id           = data.terraform_remote_state.public_dns.outputs.cyber_dhs_gov_zone.id
   security_groups = [
-    data.terraform_remote_state.freeipa.outputs.client_security_group.id
+    data.terraform_remote_state.freeipa.outputs.client_security_group.id,
+    data.terraform_remote_state.venom.outputs.venom_security_group.id,
   ]
   ssm_read_role_accounts_allowed = [
     data.aws_caller_identity.sharedservices.account_id
