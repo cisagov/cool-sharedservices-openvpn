@@ -109,7 +109,7 @@ data "terraform_remote_state" "sharedservices" {
   workspace = terraform.workspace
 }
 
-data "terraform_remote_state" "venom" {
+data "terraform_remote_state" "cdm" {
   backend = "s3"
 
   config = {
@@ -118,7 +118,7 @@ data "terraform_remote_state" "venom" {
     dynamodb_table = "terraform-state-lock"
     profile        = "cool-terraform-backend"
     region         = "us-east-1"
-    key            = "cool-sharedservices-venom/terraform.tfstate"
+    key            = "cool-sharedservices-cdm/terraform.tfstate"
   }
 
   workspace = terraform.workspace
