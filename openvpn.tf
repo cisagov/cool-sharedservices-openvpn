@@ -20,7 +20,7 @@ locals {
 }
 
 module "openvpn" {
-  source = "github.com/cisagov/openvpn-server-tf-module"
+  source = "github.com/cisagov/openvpn-server-tf-module?ref=improvement%2Flink-nessus-agent"
 
   providers = {
     aws                = aws.provision_sharedservices
