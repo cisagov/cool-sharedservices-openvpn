@@ -42,6 +42,9 @@ module "openvpn" {
   freeipa_domain           = var.cool_domain
   freeipa_realm            = upper(var.cool_domain)
   hostname                 = "vpn.${var.cool_domain}"
+  nessus_hostname_key      = var.nessus_hostname_key
+  nessus_key_key           = var.nessus_key_key
+  nessus_port_key          = var.nessus_port_key
   private_networks         = var.private_networks
   private_reverse_zone_id  = data.terraform_remote_state.networking.outputs.public_subnet_private_reverse_zones[local.openvpn_subnet_cidr].id
   private_zone_id          = data.terraform_remote_state.networking.outputs.private_zone.id
