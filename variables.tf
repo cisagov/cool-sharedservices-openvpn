@@ -48,6 +48,24 @@ variable "cool_domain" {
   default     = "cool.cyber.dhs.gov"
 }
 
+variable "nessus_hostname_key" {
+  type        = string
+  description = "The SSM Parameter Store key whose corresponding value contains the hostname of the CDM Tenable Nessus server to which the Nessus Agent should link (e.g. /cdm/nessus/hostname)."
+  default     = "/cdm/nessus_hostname"
+}
+
+variable "nessus_key_key" {
+  type        = string
+  description = "The SSM Parameter Store key whose corresponding value contains the secret key that the Nessus Agent should use when linking with the CDM Tenable Nessus server (e.g. /cdm/nessus/key)."
+  default     = "/cdm/nessus_key"
+}
+
+variable "nessus_port_key" {
+  type        = string
+  description = "The SSM Parameter Store key whose corresponding value contains the port to which the Nessus Agent should connect when linking with the CDM Tenable Nessus server (e.g. /cdm/nessus/port)."
+  default     = "/cdm/nessus_port"
+}
+
 variable "private_networks" {
   type        = list(string)
   description = "A list of strings, each of which contains a network and netmask defining a list of subnets that exist behind the VPN server (e.g. [\"10.224.0.0 255.240.0.0\", \"192.168.100.0 255.255.255.0\"]).  These will be pushed to the clients."

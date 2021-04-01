@@ -33,33 +33,61 @@ has been applied.
 |------|---------|
 | aws | ~> 3.0 |
 | aws.organizationsreadonly | ~> 3.0 |
-| aws.provision_sharedservices | ~> 3.0 |
+| aws.provision\_sharedservices | ~> 3.0 |
 | terraform | n/a |
+
+## Modules ##
+
+| Name | Source | Version |
+|------|--------|---------|
+| openvpn | github.com/cisagov/openvpn-server-tf-module?ref=improvement%2Flink-nessus-agent |  |
+
+## Resources ##
+
+| Name | Type |
+|------|------|
+| [aws_iam_policy.provisionopenvpn_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_role_policy_attachment.provisionopenvpn_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [aws_caller_identity.sharedservices](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [aws_iam_policy_document.provisionopenvpn_policy_doc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_organizations_organization.cool](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/organizations_organization) | data source |
+| [terraform_remote_state.cdm](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
+| [terraform_remote_state.dns_certboto](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
+| [terraform_remote_state.freeipa](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
+| [terraform_remote_state.images_parameterstore](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
+| [terraform_remote_state.master](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
+| [terraform_remote_state.networking](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
+| [terraform_remote_state.public_dns](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
+| [terraform_remote_state.sharedservices](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
 ## Inputs ##
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| aws_region | The AWS region where the shared services account is to be created (e.g. "us-east-1"). | `string` | `us-east-1` | no |
-| cert_bucket_name | The name of the AWS S3 bucket where certificates are stored. | `string` | `cisa-cool-certificates` | no |
-| client_dns_search_domain | The DNS search domain to be pushed to VPN clients. | `string` | n/a | yes |
-| client_dns_server | The address of the DNS server to be pushed to the VPN clients. | `string` | n/a | yes |
-| client_motd_url | A URL to the motd page.  This will be pushed to VPN clients as an environment variable. | `string` | `https://github.com/cisagov/cool-system/blob/develop/motd.md#welcome-to-cisas-cloud-oriented-operations-lab-cool` | no |
-| client_network | A string containing the network and netmask to assign client addresses. The server will take the first address. (e.g. "10.240.0.0 255.255.255.0"). | `string` | n/a | yes |
-| cool_domain | The domain where the COOL resources reside (e.g. "cool.cyber.dhs.gov"). | `string` | `cool.cyber.dhs.gov` | no |
-| private_networks | A list of strings, each of which contains a network and netmask defining a list of subnets that exist behind the VPN server (e.g. ["10.224.0.0 255.240.0.0", "192.168.100.0 255.255.255.0"]).  These will be pushed to the clients. | `list(string)` | n/a | yes |
-| provisionaccount_role_name | The name of the IAM role that allows sufficient permissions to provision all AWS resources in the Shared Services account. | `string` | `ProvisionAccount` | no |
-| provisionopenvpn_policy_description | The description to associate with the IAM policy that allows provisioning of OpenVPN in the Shared Services account. | `string` | `Allows provisioning of OpenVPN in the Shared Services account.` | no |
-| provisionopenvpn_policy_name | The name to assign the IAM policy that allows provisioning of OpenVPN in the Shared Services account. | `string` | `ProvisionOpenVPN` | no |
+| aws\_region | The AWS region where the shared services account is to be created (e.g. "us-east-1"). | `string` | `"us-east-1"` | no |
+| cert\_bucket\_name | The name of the AWS S3 bucket where certificates are stored. | `string` | `"cisa-cool-certificates"` | no |
+| client\_dns\_search\_domain | The DNS search domain to be pushed to VPN clients. | `string` | n/a | yes |
+| client\_dns\_server | The address of the DNS server to be pushed to the VPN clients. | `string` | n/a | yes |
+| client\_motd\_url | A URL to the motd page.  This will be pushed to VPN clients as an environment variable. | `string` | `"https://github.com/cisagov/cool-system/blob/develop/motd.md#welcome-to-cisas-cloud-oriented-operations-lab-cool"` | no |
+| client\_network | A string containing the network and netmask to assign client addresses. The server will take the first address. (e.g. "10.240.0.0 255.255.255.0"). | `string` | n/a | yes |
+| cool\_domain | The domain where the COOL resources reside (e.g. "cool.cyber.dhs.gov"). | `string` | `"cool.cyber.dhs.gov"` | no |
+| nessus\_hostname\_key | The SSM Parameter Store key whose corresponding value contains the hostname of the CDM Tenable Nessus server to which the Nessus Agent should link (e.g. /cdm/nessus/hostname). | `string` | `"/cdm/nessus_hostname"` | no |
+| nessus\_key\_key | The SSM Parameter Store key whose corresponding value contains the secret key that the Nessus Agent should use when linking with the CDM Tenable Nessus server (e.g. /cdm/nessus/key). | `string` | `"/cdm/nessus_key"` | no |
+| nessus\_port\_key | The SSM Parameter Store key whose corresponding value contains the port to which the Nessus Agent should connect when linking with the CDM Tenable Nessus server (e.g. /cdm/nessus/port). | `string` | `"/cdm/nessus_port"` | no |
+| private\_networks | A list of strings, each of which contains a network and netmask defining a list of subnets that exist behind the VPN server (e.g. ["10.224.0.0 255.240.0.0", "192.168.100.0 255.255.255.0"]).  These will be pushed to the clients. | `list(string)` | n/a | yes |
+| provisionaccount\_role\_name | The name of the IAM role that allows sufficient permissions to provision all AWS resources in the Shared Services account. | `string` | `"ProvisionAccount"` | no |
+| provisionopenvpn\_policy\_description | The description to associate with the IAM policy that allows provisioning of OpenVPN in the Shared Services account. | `string` | `"Allows provisioning of OpenVPN in the Shared Services account."` | no |
+| provisionopenvpn\_policy\_name | The name to assign the IAM policy that allows provisioning of OpenVPN in the Shared Services account. | `string` | `"ProvisionOpenVPN"` | no |
 | tags | Tags to apply to all AWS resources created. | `map(string)` | `{}` | no |
-| trusted_cidr_blocks_vpn | A list of the CIDR blocks that are allowed to access the VPN port on the VPN servers (e.g. ["10.10.0.0/16", "10.11.0.0/16"]). | `list(string)` | `[]` | no |
+| trusted\_cidr\_blocks\_vpn | A list of the CIDR blocks that are allowed to access the VPN port on the VPN servers (e.g. ["10.10.0.0/16", "10.11.0.0/16"]). | `list(string)` | `[]` | no |
 
 ## Outputs ##
 
 | Name | Description |
 |------|-------------|
-| instance_id | The ID corresponding to the OpenVPN server EC2 instance. |
-| security_group_id | The ID corresponding to the OpenVPN server security group. |
+| instance\_id | The ID corresponding to the OpenVPN server EC2 instance. |
+| security\_group\_id | The ID corresponding to the OpenVPN server security group. |
 
 ## Notes ##
 
