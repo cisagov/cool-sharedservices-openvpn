@@ -29,4 +29,11 @@ locals {
     account.id
     if account.name == "Images (${local.sharedservices_account_type})"
   ][0]
+
+  # Turn the prefix list CIDRS for the S3 gateway endpoint into a list of OpenVPN
+  # friendly "network netmask" entries.
+  private_networks = [
+    for cidr in data.terraform_remote_state.networking.outputs.vpc_endpoint_s3.cidr_blocks :
+    format("%s %s", split("/", cidr)[0], cidrnetmask(cidr))
+  ]
 }
