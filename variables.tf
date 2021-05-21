@@ -68,7 +68,7 @@ variable "nessus_port_key" {
 
 variable "private_networks" {
   type        = list(string)
-  description = "A list of strings, each of which contains a network and netmask defining a list of subnets that exist behind the VPN server (e.g. [\"10.224.0.0 255.240.0.0\", \"192.168.100.0 255.255.255.0\"]).  This will be concatenated with the list of S3 gateway endpoint routes and these will be pushed to the clients."
+  description = "A list of strings, each of which contains a network and netmask defining a list of subnets that exist behind the VPN server (e.g. [\"10.224.0.0 255.240.0.0\", \"192.168.100.0 255.255.255.0\"]).  This will be concatenated with the list of S3 gateway endpoint routes and the result will be pushed to the clients."
 }
 
 variable "provisionaccount_role_name" {
