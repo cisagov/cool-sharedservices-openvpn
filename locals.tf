@@ -32,7 +32,7 @@ locals {
 
   # Turn the prefix list CIDRS for the S3 gateway endpoint into a list of OpenVPN
   # friendly "network netmask" entries.
-  private_networks = [
+  vpc_endpoints = [
     for cidr in data.terraform_remote_state.networking.outputs.vpc_endpoint_s3.cidr_blocks :
     format("%s %s", split("/", cidr)[0], cidrnetmask(cidr))
   ]
