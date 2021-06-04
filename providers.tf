@@ -3,6 +3,9 @@
 # the other providers.
 
 provider "aws" {
+  default_tags {
+    tags = var.tags
+  }
   region = var.aws_region
 }
 
@@ -12,6 +15,9 @@ provider "aws" {
   assume_role {
     role_arn     = data.terraform_remote_state.master.outputs.organizationsreadonly_role.arn
     session_name = local.caller_user_name
+  }
+  default_tags {
+    tags = var.tags
   }
   region = var.aws_region
 }
@@ -24,6 +30,9 @@ provider "aws" {
     role_arn     = data.terraform_remote_state.public_dns.outputs.route53resourcechange_role.arn
     session_name = local.caller_user_name
   }
+  default_tags {
+    tags = var.tags
+  }
   region = var.aws_region
 }
 
@@ -35,6 +44,9 @@ provider "aws" {
     role_arn     = data.terraform_remote_state.dns_certboto.outputs.provisioncertificatereadroles_role.arn
     session_name = local.caller_user_name
   }
+  default_tags {
+    tags = var.tags
+  }
   region = var.aws_region
 }
 
@@ -44,6 +56,9 @@ provider "aws" {
   assume_role {
     role_arn     = data.terraform_remote_state.sharedservices.outputs.provisionaccount_role.arn
     session_name = local.caller_user_name
+  }
+  default_tags {
+    tags = var.tags
   }
   region = var.aws_region
 }
@@ -55,6 +70,9 @@ provider "aws" {
   assume_role {
     role_arn     = data.terraform_remote_state.images_parameterstore.outputs.provisionparameterstorereadroles_role.arn
     session_name = local.caller_user_name
+  }
+  default_tags {
+    tags = var.tags
   }
   region = var.aws_region
 }
