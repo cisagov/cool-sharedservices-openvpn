@@ -25,15 +25,15 @@ has been applied.
 | Name | Version |
 |------|---------|
 | terraform | ~> 0.12.0 |
-| aws | ~> 3.0 |
+| aws | ~> 3.38 |
 
 ## Providers ##
 
 | Name | Version |
 |------|---------|
-| aws | ~> 3.0 |
-| aws.organizationsreadonly | ~> 3.0 |
-| aws.provision\_sharedservices | ~> 3.0 |
+| aws | ~> 3.38 |
+| aws.organizationsreadonly | ~> 3.38 |
+| aws.provision\_sharedservices | ~> 3.38 |
 | terraform | n/a |
 
 ## Modules ##
