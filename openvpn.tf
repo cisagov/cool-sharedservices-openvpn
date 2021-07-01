@@ -57,7 +57,6 @@ module "openvpn" {
     data.aws_caller_identity.sharedservices.account_id
   ]
   subnet_id               = data.terraform_remote_state.networking.outputs.public_subnets[local.openvpn_subnet_cidr].id
-  tags                    = merge(var.tags, map("Name", "OpenVPN"))
   trusted_cidr_blocks_vpn = var.trusted_cidr_blocks_vpn
   vpn_group               = "vpnusers"
 }
