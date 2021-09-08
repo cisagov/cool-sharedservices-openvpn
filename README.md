@@ -24,7 +24,7 @@ has been applied.
 
 | Name | Version |
 |------|---------|
-| terraform | ~> 0.12.0 |
+| terraform | ~> 0.13.0 |
 | aws | ~> 3.38 |
 
 ## Providers ##
@@ -40,7 +40,7 @@ has been applied.
 
 | Name | Source | Version |
 |------|--------|---------|
-| openvpn | github.com/cisagov/openvpn-server-tf-module |  |
+| openvpn | github.com/cisagov/openvpn-server-tf-module | n/a |
 
 ## Resources ##
 
