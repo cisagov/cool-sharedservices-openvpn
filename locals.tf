@@ -39,7 +39,7 @@ locals {
 
   # Ports to be accessed in assessment environments (e.g. for
   # Guacamole, Mattermost, etc.)
-  assessment_env_ports = {
+  assessment_env_service_ports = {
     http = {
       port     = 80
       protocol = "tcp"
