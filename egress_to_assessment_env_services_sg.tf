@@ -4,7 +4,7 @@ resource "aws_security_group" "assessment_environment_services_access" {
   description = "Security group allowing access to assessment environment services."
 }
 
-# Access to assessment environment services (e.g., guacamole,
+# Access to assessment environment services (e.g., Guacamole,
 # Mattermost, etc.)
 resource "aws_security_group_rule" "egress_to_assessment_env_services" {
   for_each = local.assessment_env_service_ports
