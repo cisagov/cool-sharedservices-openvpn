@@ -1,7 +1,7 @@
 # Security group for assessment environment access
 resource "aws_security_group" "assessment_environment_services_access" {
   vpc_id      = data.terraform_remote_state.networking.outputs.vpc.id
-  description = "Security group allowing access to assessment environment services"
+  description = "Security group allowing access to assessment environment services."
 }
 
 # Access to assessment environment services (e.g., guacamole,
