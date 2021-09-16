@@ -53,7 +53,7 @@ locals {
       protocol = "udp"
     },
     mm_unknown1 = {
-      port     = 5379
+      port     = 5349
       protocol = "tcp"
     },
     mm_web = {
