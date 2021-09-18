@@ -86,6 +86,7 @@ has been applied.
 
 | Name | Description |
 |------|-------------|
+| assessment\_environment\_services\_access\_security\_group | The security group allowing VPN users access to services running in the assessment environments. |
 | instance\_id | The ID corresponding to the OpenVPN server EC2 instance. |
 | security\_group\_id | The ID corresponding to the OpenVPN server security group. |
 

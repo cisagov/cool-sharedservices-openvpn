@@ -36,4 +36,33 @@ locals {
     for cidr in data.terraform_remote_state.networking.outputs.vpc_endpoint_s3.cidr_blocks :
     format("%s %s", split("/", cidr)[0], cidrnetmask(cidr))
   ]
+
+  # Ports to be accessed in assessment environments (e.g. for
+  # Guacamole, Mattermost, etc.)
+  assessment_env_service_ports = {
+    http = {
+      port     = 80
+      protocol = "tcp"
+    },
+    https = {
+      port     = 443
+      protocol = "tcp"
+    },
+    mm_unknown0 = {
+      port     = 3478
+      protocol = "udp"
+    },
+    mm_unknown1 = {
+      port     = 5349
+      protocol = "tcp"
+    },
+    mm_web = {
+      port     = 8065
+      protocol = "tcp"
+    },
+    mm_unknown2 = {
+      port     = 10000
+      protocol = "udp"
+    },
+  }
 }
