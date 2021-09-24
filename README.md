@@ -24,7 +24,7 @@ has been applied.
 
 | Name | Version |
 |------|---------|
-| terraform | ~> 0.14.0 |
+| terraform | ~> 1.0 |
 | aws | ~> 3.38 |
 
 ## Providers ##
@@ -48,6 +48,8 @@ has been applied.
 |------|------|
 | [aws_iam_policy.provisionopenvpn_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 | [aws_iam_role_policy_attachment.provisionopenvpn_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
+| [aws_security_group.assessment_environment_services_access](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
+| [aws_security_group_rule.egress_to_assessment_env_services](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_caller_identity.sharedservices](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_policy_document.provisionopenvpn_policy_doc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
