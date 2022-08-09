@@ -38,7 +38,7 @@ locals {
   ]
 
   # Ports to be accessed in assessment environments (e.g. for
-  # Guacamole, Mattermost, etc.)
+  # Guacamole, Mattermost, NoMachine, etc.)
   assessment_env_service_ports = {
     http = {
       port     = 80
@@ -50,6 +50,14 @@ locals {
     },
     mm_unknown0 = {
       port     = 3478
+      protocol = "udp"
+    },
+    nomachine_tcp = {
+      port     = 4000
+      protocol = "tcp"
+    },
+    nomachine_udp = {
+      port     = 4012
       protocol = "udp"
     },
     mm_unknown1 = {
