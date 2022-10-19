@@ -50,6 +50,7 @@ module "openvpn" {
   private_zone_id          = data.terraform_remote_state.networking.outputs.private_zone.id
   public_zone_id           = data.terraform_remote_state.public_dns.outputs.cyber_dhs_gov_zone.id
   security_groups = [
+    data.terraform_remote_state.networking.outputs.s3_endpoint_client_security_group.id,
     data.terraform_remote_state.freeipa.outputs.client_security_group.id,
     data.terraform_remote_state.cdm.outputs.cdm_security_group.id,
     aws_security_group.assessment_environment_services_access.id,
