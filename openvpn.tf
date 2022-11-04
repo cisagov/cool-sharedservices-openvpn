@@ -53,7 +53,11 @@ module "openvpn" {
     aws_security_group.assessment_environment_services_access.id,
     data.terraform_remote_state.cdm.outputs.cdm_security_group.id,
     data.terraform_remote_state.freeipa.outputs.client_security_group.id,
+    data.terraform_remote_state.networking.outputs.cloudwatch_agent_endpoint_client_security_group.id,
     data.terraform_remote_state.networking.outputs.s3_endpoint_client_security_group.id,
+    data.terraform_remote_state.networking.outputs.ssm_agent_endpoint_client_security_group.id,
+    data.terraform_remote_state.networking.outputs.ssm_endpoint_client_security_group.id,
+    data.terraform_remote_state.networking.outputs.sts_endpoint_client_security_group.id,
   ]
   ssm_read_role_accounts_allowed = [
     data.aws_caller_identity.sharedservices.account_id
