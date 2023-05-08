@@ -41,7 +41,7 @@ has been applied.
 | Name | Source | Version |
 |------|--------|---------|
 | cw\_alarms\_openvpn | github.com/cisagov/instance-cw-alarms-tf-module | n/a |
-| openvpn | github.com/cisagov/openvpn-server-tf-module | n/a |
+| openvpn | github.com/cisagov/openvpn-server-tf-module | improvement%2Fadd-cloud-init-foo-for-crowdstrike |
 
 ## Resources ##
 
@@ -75,9 +75,7 @@ has been applied.
 | client\_motd\_url | A URL to the motd page.  This will be pushed to VPN clients as an environment variable. | `string` | `"https://github.com/cisagov/cool-system/blob/develop/motd.md#welcome-to-cisas-cloud-oriented-operations-lab-cool"` | no |
 | client\_network | A string containing the network and netmask to assign client addresses. The server will take the first address. (e.g. "10.240.0.0 255.255.255.0"). | `string` | n/a | yes |
 | cool\_domain | The domain where the COOL resources reside (e.g. "cool.cyber.dhs.gov"). | `string` | `"cool.cyber.dhs.gov"` | no |
-| nessus\_hostname\_key | The SSM Parameter Store key whose corresponding value contains the hostname of the CDM Tenable Nessus server to which the Nessus Agent should link (e.g. /cdm/nessus/hostname). | `string` | `"/cdm/nessus_hostname"` | no |
-| nessus\_key\_key | The SSM Parameter Store key whose corresponding value contains the secret key that the Nessus Agent should use when linking with the CDM Tenable Nessus server (e.g. /cdm/nessus/key). | `string` | `"/cdm/nessus_key"` | no |
-| nessus\_port\_key | The SSM Parameter Store key whose corresponding value contains the port to which the Nessus Agent should connect when linking with the CDM Tenable Nessus server (e.g. /cdm/nessus/port). | `string` | `"/cdm/nessus_port"` | no |
+| crowdstrike\_falcon\_sensor\_customer\_id\_key | The SSM Parameter Store key whose corresponding value contains the customer ID for CrowdStrike Falcon (e.g. /cdm/falcon/customer\_id). | `string` | `"/cdm/falcon/customer_id"` | no |
 | private\_networks | A list of strings, each of which contains a network and netmask defining a list of subnets that exist behind the VPN server (e.g. ["10.224.0.0 255.240.0.0", "192.168.100.0 255.255.255.0"]).  This will be concatenated with the list of S3 gateway endpoint routes and the result will be pushed to the clients. | `list(string)` | n/a | yes |
 | provisionaccount\_role\_name | The name of the IAM role that allows sufficient permissions to provision all AWS resources in the Shared Services account. | `string` | `"ProvisionAccount"` | no |
 | provisionopenvpn\_policy\_description | The description to associate with the IAM policy that allows provisioning of OpenVPN in the Shared Services account. | `string` | `"Allows provisioning of OpenVPN in the Shared Services account."` | no |
