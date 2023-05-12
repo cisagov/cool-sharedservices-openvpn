@@ -40,6 +40,7 @@ module "openvpn" {
   client_motd_url                           = var.client_motd_url
   client_network                            = var.client_network
   crowdstrike_falcon_sensor_customer_id_key = var.crowdstrike_falcon_sensor_customer_id_key
+  crowdstrike_falcon_sensor_tags_key        = var.crowdstrike_falcon_sensor_tags_key
   freeipa_domain                            = var.cool_domain
   freeipa_realm                             = upper(var.cool_domain)
   hostname                                  = "vpn.${var.cool_domain}"

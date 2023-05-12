@@ -54,6 +54,12 @@ variable "crowdstrike_falcon_sensor_customer_id_key" {
   default     = "/cdm/falcon/customer_id"
 }
 
+variable "crowdstrike_falcon_sensor_tags_key" {
+  type        = string
+  description = "The SSM Parameter Store key whose corresponding value contains a comma-delimited list of tags that are to be applied to CrowdStrike Falcon (e.g. /cdm/falcon/tags)."
+  default     = "/cdm/falcon/tags"
+}
+
 variable "private_networks" {
   type        = list(string)
   description = "A list of strings, each of which contains a network and netmask defining a list of subnets that exist behind the VPN server (e.g. [\"10.224.0.0 255.240.0.0\", \"192.168.100.0 255.255.255.0\"]).  This will be concatenated with the list of S3 gateway endpoint routes and the result will be pushed to the clients."
