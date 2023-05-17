@@ -35,20 +35,19 @@ module "openvpn" {
   cert_read_role_accounts_allowed = [
     data.aws_caller_identity.sharedservices.account_id
   ]
-  client_dns_search_domain = var.client_dns_search_domain
-  client_dns_server        = var.client_dns_server
-  client_motd_url          = var.client_motd_url
-  client_network           = var.client_network
-  freeipa_domain           = var.cool_domain
-  freeipa_realm            = upper(var.cool_domain)
-  hostname                 = "vpn.${var.cool_domain}"
-  nessus_hostname_key      = var.nessus_hostname_key
-  nessus_key_key           = var.nessus_key_key
-  nessus_port_key          = var.nessus_port_key
-  private_networks         = concat(local.vpc_endpoints, var.private_networks)
-  private_reverse_zone_id  = data.terraform_remote_state.networking.outputs.public_subnet_private_reverse_zones[local.openvpn_subnet_cidr].id
-  private_zone_id          = data.terraform_remote_state.networking.outputs.private_zone.id
-  public_zone_id           = data.terraform_remote_state.public_dns.outputs.cyber_dhs_gov_zone.id
+  client_dns_search_domain                  = var.client_dns_search_domain
+  client_dns_server                         = var.client_dns_server
+  client_motd_url                           = var.client_motd_url
+  client_network                            = var.client_network
+  crowdstrike_falcon_sensor_customer_id_key = var.crowdstrike_falcon_sensor_customer_id_key
+  crowdstrike_falcon_sensor_tags_key        = var.crowdstrike_falcon_sensor_tags_key
+  freeipa_domain                            = var.cool_domain
+  freeipa_realm                             = upper(var.cool_domain)
+  hostname                                  = "vpn.${var.cool_domain}"
+  private_networks                          = concat(local.vpc_endpoints, var.private_networks)
+  private_reverse_zone_id                   = data.terraform_remote_state.networking.outputs.public_subnet_private_reverse_zones[local.openvpn_subnet_cidr].id
+  private_zone_id                           = data.terraform_remote_state.networking.outputs.private_zone.id
+  public_zone_id                            = data.terraform_remote_state.public_dns.outputs.cyber_dhs_gov_zone.id
   security_groups = [
     aws_security_group.assessment_environment_services_access.id,
     data.terraform_remote_state.cdm.outputs.cdm_security_group.id,
