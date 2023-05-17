@@ -20,7 +20,7 @@ locals {
 }
 
 module "openvpn" {
-  source = "github.com/cisagov/openvpn-server-tf-module?ref=improvement%2Fadd-cloud-init-foo-for-crowdstrike"
+  source = "github.com/cisagov/openvpn-server-tf-module"
 
   providers = {
     aws                = aws.provision_sharedservices

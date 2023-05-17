@@ -41,7 +41,7 @@ has been applied.
 | Name | Source | Version |
 |------|--------|---------|
 | cw\_alarms\_openvpn | github.com/cisagov/instance-cw-alarms-tf-module | n/a |
-| openvpn | github.com/cisagov/openvpn-server-tf-module | improvement%2Fadd-cloud-init-foo-for-crowdstrike |
+| openvpn | github.com/cisagov/openvpn-server-tf-module | n/a |
 
 ## Resources ##
 
