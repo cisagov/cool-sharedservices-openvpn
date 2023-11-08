@@ -30,8 +30,8 @@ module "openvpn" {
   }
 
   ami_owner_account_id = local.images_account_id
-  # aws_instance_type       = "t3.small"
-  cert_bucket_name = var.cert_bucket_name
+  aws_instance_type    = "t3.medium"
+  cert_bucket_name     = var.cert_bucket_name
   cert_read_role_accounts_allowed = [
     data.aws_caller_identity.sharedservices.account_id
   ]
