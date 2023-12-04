@@ -20,20 +20,21 @@ has been applied.
 - Access to all of the Terraform remote states specified in
   [remote_states.tf](remote_states.tf).
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements ##
 
 | Name | Version |
 |------|---------|
 | terraform | ~> 1.0 |
-| aws | ~> 3.38 |
+| aws | ~> 4.9 |
 
 ## Providers ##
 
 | Name | Version |
 |------|---------|
-| aws | ~> 3.38 |
-| aws.organizationsreadonly | ~> 3.38 |
-| aws.provision\_sharedservices | ~> 3.38 |
+| aws | ~> 4.9 |
+| aws.organizationsreadonly | ~> 4.9 |
+| aws.provision\_sharedservices | ~> 4.9 |
 | terraform | n/a |
 
 ## Modules ##
@@ -94,6 +95,7 @@ has been applied.
 | assessment\_environment\_services\_access\_security\_group | The security group allowing VPN users access to services running in the assessment environments. |
 | instance\_id | The ID corresponding to the OpenVPN server EC2 instance. |
 | security\_group\_id | The ID corresponding to the OpenVPN server security group. |
+<!-- END_TF_DOCS -->
 
 ## Notes ##
 
