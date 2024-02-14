@@ -51,6 +51,7 @@ module "openvpn" {
   private_reverse_zone_id                   = data.terraform_remote_state.networking.outputs.public_subnet_private_reverse_zones[local.openvpn_subnet_cidr].id
   private_zone_id                           = data.terraform_remote_state.networking.outputs.private_zone.id
   public_zone_id                            = data.terraform_remote_state.public_dns.outputs.cyber_dhs_gov_zone.id
+  root_disk_size                            = var.root_disk_size
   security_groups = [
     aws_security_group.assessment_environment_services_access.id,
     data.terraform_remote_state.cdm.outputs.cdm_security_group.id,

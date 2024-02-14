@@ -85,6 +85,7 @@ has been applied.
 | provisionaccount\_role\_name | The name of the IAM role that allows sufficient permissions to provision all AWS resources in the Shared Services account. | `string` | `"ProvisionAccount"` | no |
 | provisionopenvpn\_policy\_description | The description to associate with the IAM policy that allows provisioning of OpenVPN in the Shared Services account. | `string` | `"Allows provisioning of OpenVPN in the Shared Services account."` | no |
 | provisionopenvpn\_policy\_name | The name to assign the IAM policy that allows provisioning of OpenVPN in the Shared Services account. | `string` | `"ProvisionOpenVPN"` | no |
+| root\_disk\_size | The size of the OpenVPN instance's root disk in GiB. | `number` | `8` | no |
 | tags | Tags to apply to all AWS resources created. | `map(string)` | `{}` | no |
 | trusted\_cidr\_blocks\_vpn | A list of the CIDR blocks that are allowed to access the VPN port on the VPN servers (e.g. ["10.10.0.0/16", "10.11.0.0/16"]). | `list(string)` | `[]` | no |
 
