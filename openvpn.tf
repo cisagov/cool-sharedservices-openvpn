@@ -20,7 +20,7 @@ locals {
 }
 
 module "openvpn" {
-  source = "github.com/cisagov/openvpn-server-tf-module"
+  source = "github.com/cisagov/openvpn-server-tf-module?ref=improvement%2Fadd-input-var-for-disk-size"
 
   providers = {
     aws                = aws.provision_sharedservices
