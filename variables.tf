@@ -101,6 +101,12 @@ variable "provisionopenvpn_policy_name" {
   default     = "ProvisionOpenVPN"
 }
 
+variable "root_disk_size" {
+  type        = number
+  description = "The size of the OpenVPN instance's root disk in GiB."
+  default     = 8
+}
+
 variable "tags" {
   type        = map(string)
   description = "Tags to apply to all AWS resources created."
