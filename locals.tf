@@ -40,10 +40,20 @@ locals {
   # Ports to be accessed in assessment environments (e.g. for
   # Advanced Ops VPN endpoints, Guacamole, Mattermost, etc.)
   assessment_env_service_ports = {
-    ao_vpn_endpoints = {
+    ao_vpn_endpoints_tcp = {
+      from_port = 60000
+      protocol  = "tcp"
+      to_port   = 60100
+    },
+    ao_vpn_endpoints_udp_1 = {
       from_port = 51820
       protocol  = "udp"
       to_port   = 51835
+    },
+    ao_vpn_endpoints_udp_2 = {
+      from_port = 60000
+      protocol  = "udp"
+      to_port   = 60100
     },
     http = {
       from_port = 80
