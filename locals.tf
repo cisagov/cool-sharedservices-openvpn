@@ -94,4 +94,17 @@ locals {
       to_port   = 10000
     },
   }
+
+  base_vpn_security_group_ids = [
+    aws_security_group.assessment_environment_services_access.id,
+    data.terraform_remote_state.freeipa.outputs.client_security_group.id,
+    data.terraform_remote_state.networking.outputs.cloudwatch_agent_endpoint_client_security_group.id,
+    data.terraform_remote_state.networking.outputs.s3_endpoint_client_security_group.id,
+    data.terraform_remote_state.networking.outputs.ssm_agent_endpoint_client_security_group.id,
+    data.terraform_remote_state.networking.outputs.ssm_endpoint_client_security_group.id,
+    data.terraform_remote_state.networking.outputs.sts_endpoint_client_security_group.id,
+  ]
+
+  # Conditionally include the CDM security group, which is only used in Production
+  vpn_security_group_ids = terraform.workspace == "production" ? concat(local.base_vpn_security_group_ids, [data.terraform_remote_state.cdm.outputs.cdm_security_group.id]) : local.base_vpn_security_group_ids
 }
