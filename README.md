@@ -19,6 +19,24 @@ has been applied.
   (specified in [backend.tf](backend.tf)).
 - Access to all of the Terraform remote states specified in
   [remote_states.tf](remote_states.tf).
+- A valid certificate for the hostname of `vpn.` plus the value of the
+  `cool_domain` variable (e.g. `vpn.cool.cyber.dhs.gov`) residing in the AWS S3
+  bucket specified by the `cert_bucket_name` variable.
+- AWS Systems Manager Parameter Store values set for the keys specified by the
+  `ssm_dh4096_pem` and `ssm_tlscrypt_key` variables.
+  - To create the data for the `ssm_dh4096_pem` value, run the following
+    command:
+
+    ```console
+    openssl dhparam -out dh4096.pem 4096
+    ```
+
+  - To create the data for the `ssm_tlscrypt_key` value, run the following
+    command:
+
+    ```console
+    openvpn --genkey secret tlscrypt.key
+    ```
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements ##
