@@ -83,15 +83,17 @@ data "terraform_remote_state" "public_dns" {
   backend = "s3"
 
   config = {
-    encrypt        = true
-    bucket         = var.terraform_state_bucket
+    encrypt = true
+    # There is only one currently-supported bucket and workspace for this remote
+    # state (Production), so we must use them.
+    bucket         = "cisa-cool-terraform-state"
     dynamodb_table = "terraform-state-lock"
-    profile        = "cool-terraform-backend"
+    profile        = "cool-terraform-readcyberdhsgovterraformstate-production"
     region         = "us-east-1"
     key            = "cool-dns-cyber.dhs.gov.tfstate"
   }
 
-  workspace = terraform.workspace
+  workspace = "production"
 }
 
 data "terraform_remote_state" "sharedservices" {
