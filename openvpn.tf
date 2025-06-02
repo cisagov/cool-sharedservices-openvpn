@@ -66,12 +66,10 @@ module "cw_alarms_openvpn" {
   providers = {
     aws = aws.provision_sharedservices
   }
-  source = "github.com/cisagov/instance-cw-alarms-tf-module"
+  source = "github.com/cisagov/instance-cw-alarms-tf-module?ref=improvement%2Fonly-handle-a-single-instance"
 
-  alarm_actions = [data.terraform_remote_state.sharedservices.outputs.cw_alarm_sns_topic.arn]
-  instance_ids = [
-    module.openvpn.id,
-  ]
+  alarm_actions             = [data.terraform_remote_state.sharedservices.outputs.cw_alarm_sns_topic.arn]
+  instance_id               = module.openvpn.id
   insufficient_data_actions = [data.terraform_remote_state.sharedservices.outputs.cw_alarm_sns_topic.arn]
   ok_actions                = [data.terraform_remote_state.sharedservices.outputs.cw_alarm_sns_topic.arn]
 }
