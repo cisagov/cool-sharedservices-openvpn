@@ -68,10 +68,8 @@ module "cw_alarms_openvpn" {
   }
   source = "github.com/cisagov/instance-cw-alarms-tf-module"
 
-  alarm_actions = [data.terraform_remote_state.sharedservices.outputs.cw_alarm_sns_topic.arn]
-  instance_ids = [
-    module.openvpn.id,
-  ]
+  alarm_actions             = [data.terraform_remote_state.sharedservices.outputs.cw_alarm_sns_topic.arn]
+  instance_id               = module.openvpn.id
   insufficient_data_actions = [data.terraform_remote_state.sharedservices.outputs.cw_alarm_sns_topic.arn]
   ok_actions                = [data.terraform_remote_state.sharedservices.outputs.cw_alarm_sns_topic.arn]
 }
