@@ -44,6 +44,7 @@ module "openvpn" {
   freeipa_domain                            = var.cool_domain
   freeipa_realm                             = upper(var.cool_domain)
   hostname                                  = "vpn.${var.cool_domain}"
+  nessus_groups                             = var.nessus_groups
   nessus_hostname_key                       = var.nessus_hostname_key
   nessus_key_key                            = var.nessus_key_key
   nessus_port_key                           = var.nessus_port_key
