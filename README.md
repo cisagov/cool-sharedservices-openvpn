@@ -44,14 +44,14 @@ has been applied.
 ## Requirements ##
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | terraform | ~> 1.1 |
 | aws | ~> 6.7 |
 
 ## Providers ##
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | aws | ~> 6.7 |
 | aws.organizationsreadonly | ~> 6.7 |
 | aws.provision\_sharedservices | ~> 6.7 |
@@ -60,14 +60,14 @@ has been applied.
 ## Modules ##
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | cw\_alarms\_openvpn | github.com/cisagov/instance-cw-alarms-tf-module | n/a |
 | openvpn | github.com/cisagov/openvpn-server-tf-module | n/a |
 
 ## Resources ##
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_iam_policy.provisionopenvpn_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 | [aws_iam_role_policy_attachment.provisionopenvpn_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_security_group.assessment_environment_services_access](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
@@ -88,7 +88,7 @@ has been applied.
 ## Inputs ##
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | aws\_region | The AWS region where the shared services account is to be created (e.g. "us-east-1"). | `string` | `"us-east-1"` | no |
 | cert\_bucket\_name | The name of the AWS S3 bucket where certificates are stored. | `string` | `"cisa-cool-certificates"` | no |
 | client\_dns\_search\_domain | The DNS search domain to be pushed to VPN clients. | `string` | n/a | yes |
@@ -114,7 +114,7 @@ has been applied.
 ## Outputs ##
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | assessment\_environment\_services\_access\_security\_group | The security group allowing VPN users access to services running in the assessment environments. |
 | instance\_id | The ID corresponding to the OpenVPN server EC2 instance. |
 | security\_group\_id | The ID corresponding to the OpenVPN server security group. |
