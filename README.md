@@ -62,7 +62,7 @@ has been applied.
 | Name | Source | Version |
 | ---- | ------ | ------- |
 | cw\_alarms\_openvpn | github.com/cisagov/instance-cw-alarms-tf-module | n/a |
-| openvpn | github.com/cisagov/openvpn-server-tf-module | feature%2Fadd-cloud-init-script-to-configure-qualys-cloud-agent |
+| openvpn | github.com/cisagov/openvpn-server-tf-module | n/a |
 
 ## Resources ##
 

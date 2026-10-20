@@ -20,7 +20,7 @@ locals {
 }
 
 module "openvpn" {
-  source = "github.com/cisagov/openvpn-server-tf-module?ref=feature%2Fadd-cloud-init-script-to-configure-qualys-cloud-agent"
+  source = "github.com/cisagov/openvpn-server-tf-module"
 
   providers = {
     aws                = aws.provision_sharedservices
