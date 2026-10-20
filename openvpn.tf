@@ -52,6 +52,11 @@ module "openvpn" {
   private_reverse_zone_id                   = data.terraform_remote_state.networking.outputs.public_subnet_private_reverse_zones[local.openvpn_subnet_cidr].id
   private_zone_id                           = data.terraform_remote_state.networking.outputs.private_zone.id
   public_zone_id                            = data.terraform_remote_state.public_dns.outputs.cool_cyber_dhs_gov_zone.id
+  qualys_cloud_agent_activation_id_key      = var.qualys_cloud_agent_activation_id_key
+  qualys_cloud_agent_customer_id_key        = var.qualys_cloud_agent_customer_id_key
+  qualys_cloud_agent_fedramp                = var.qualys_cloud_agent_fedramp
+  qualys_cloud_agent_install_path           = var.qualys_cloud_agent_install_path
+  qualys_cloud_agent_server_uri_key         = var.qualys_cloud_agent_server_uri_key
   root_disk_size                            = var.root_disk_size
   security_groups                           = local.vpn_security_group_ids
   ssm_read_role_accounts_allowed = [
